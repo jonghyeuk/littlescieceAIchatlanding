@@ -1,0 +1,44 @@
+{
+  "short_name": "과학연구설계AI",
+  "name": "과학연구설계 AI - 고등학생 연구활동 전문 도우미",
+  "description": "ISEF, 전국과학전람회, R&E 등 20,000+ 수상작 DB 기반 AI 멘토링",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#2563eb",
+  "background_color": "#f8fafc",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ko-KR",
+  "categories": ["education", "productivity", "science"],
+  "screenshots": [
+    {
+      "src": "screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshot-narrow.png", 
+      "sizes": "640x1136",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}
