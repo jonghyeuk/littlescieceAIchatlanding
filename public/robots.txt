@@ -1,0 +1,30 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# 크롤링 허용
+Sitemap: https://your-domain.com/sitemap.xml
+
+# 특정 경로 제한 (필요시)
+# Disallow: /admin/
+# Disallow: /private/
+
+# 검색엔진 최적화
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing  
+User-agent: Bingbot
+Allow: /
+
+# Naver
+User-agent: Yeti
+Allow: /
+
+# Daum
+User-agent: Daumoa
+Allow: /
+
+# 크롤링 속도 제한
+Crawl-delay: 1
