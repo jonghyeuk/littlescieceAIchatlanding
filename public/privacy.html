@@ -1,0 +1,444 @@
+import React, { useState } from 'react';
+import { 
+  ArrowLeft, 
+  Beaker, 
+  Shield,
+  Eye,
+  Lock,
+  Users,
+  FileText,
+  Clock,
+  Mail,
+  CheckCircle,
+  AlertCircle,
+  Download
+} from 'lucide-react';
+
+const PrivacyPage = () => {
+  const [activeSection, setActiveSection] = useState(null);
+
+  const sections = [
+    {
+      id: 1,
+      title: "1. 개인정보 수집 및 이용목적",
+      content: `
+• **서비스 제공**: AI 연구주제 추천, 실험설계 도움, 보고서 작성 지원
+• **회원관리**: 회원가입, 로그인, 회원정보 관리, 고객지원
+• **서비스 개선**: 이용패턴 분석, 서비스 품질 향상, 신기능 개발
+• **커뮤니케이션**: 공지사항 전달, 문의사항 응답, 서비스 안내
+• **결제관리**: 이용권 결제, 환불처리, 결제내역 관리
+      `
+    },
+    {
+      id: 2,
+      title: "2. 수집하는 개인정보 항목",
+      content: `
+**필수정보 (서비스 이용시)**
+• 이용자가 입력하는 연구주제 및 질문내용
+• 이용시간, 접속기록, 브라우저 정보
+• 서비스 이용기록 및 AI 대화내용
+
+**선택정보 (회원가입시)**
+• 이메일 주소 (로그인 및 고객지원 목적)
+• 닉네임 (서비스 내 식별 목적)
+
+**결제정보 (이용권 구매시)**
+• 결제수단 정보 (카드정보는 결제대행사에서 처리)
+• 결제내역 및 영수증 정보
+      `
+    },
+    {
+      id: 3,
+      title: "3. 개인정보 보유 및 이용기간",
+      content: `
+• **서비스 이용기록**: 최대 3년간 보관 후 자동 삭제
+• **회원정보**: 회원탈퇴 즉시 삭제 (법령에 따른 보관의무 제외)
+• **결제정보**: 전자상거래법에 따라 5년간 보관
+• **문의 및 상담내용**: 처리완료 후 3년간 보관
+• **접속로그**: 통신비밀보호법에 따라 3개월간 보관
+
+**법령에 따른 보관의무**
+• 전자상거래법: 계약, 청약철회, 결제기록 5년
+• 통신비밀보호법: 로그기록 3개월
+      `
+    },
+    {
+      id: 4,
+      title: "4. 개인정보 제3자 제공",
+      content: `
+**원칙**: 이용자의 개인정보를 제3자에게 제공하지 않습니다.
+
+**예외사항**
+• 이용자가 사전에 동의한 경우
+• 법령에 의해 요구되는 경우
+• 수사기관의 법적 요청이 있는 경우
+
+**업무위탁**
+• **결제처리**: 이니시스, 토스페이먼츠 등 결제대행사
+• **클라우드 서비스**: Google Cloud Platform (데이터 저장)
+• **고객지원**: Gmail (문의사항 처리)
+
+위탁업체와는 개인정보보호 계약을 체결하여 안전하게 관리합니다.
+      `
+    },
+    {
+      id: 5,
+      title: "5. 이용자의 권리와 행사방법",
+      content: `
+**이용자의 권리**
+• 개인정보 열람권: 본인의 개인정보 처리현황 확인
+• 정정・삭제권: 잘못된 정보의 수정이나 삭제 요구
+• 처리정지권: 개인정보 처리 중단 요구
+• 손해배상청구권: 피해 발생시 배상 요구
+
+**권리 행사방법**
+• **이메일**: littlescienceai@gmail.com
+• **처리기간**: 요청 후 10일 이내 처리
+• **대리인**: 법정대리인 또는 위임을 받은 자가 요청 가능
+
+**만 14세 미만 아동**
+법정대리인의 동의를 받아 서비스를 이용해주세요.
+      `
+    },
+    {
+      id: 6,
+      title: "6. 개인정보 보호를 위한 기술적・관리적 조치",
+      content: `
+**기술적 보호조치**
+• SSL 암호화 통신으로 데이터 전송 보호
+• 개인정보 암호화 저장
+• 접근권한 관리 및 접속기록 보관
+• 보안프로그램 설치 및 정기 업데이트
+
+**관리적 보호조치**
+• 개인정보보호 담당자 지정 및 책임 부여
+• 직원 대상 개인정보보호 교육 실시
+• 개인정보 접근권한 최소화
+• 개인정보보호 내부관리계획 수립・시행
+
+**물리적 보호조치**
+• 서버실 출입통제 및 보안장치 설치
+• 개인정보 보관 장소 잠금장치 설치
+      `
+    },
+    {
+      id: 7,
+      title: "7. 개인정보보호 담당자",
+      content: `
+**개인정보보호 담당자**
+• **이름**: 과학연구설계 AI 개인정보보호팀
+• **이메일**: littlescienceai@gmail.com
+• **연락처**: 개인정보 관련 문의는 이메일로 연락주세요
+
+**개인정보보호 담당부서**
+• **부서명**: 개인정보보호팀
+• **이메일**: littlescienceai@gmail.com
+
+개인정보 관련 문의, 불만처리, 피해구제 등에 관한 사항은 언제든지 연락주시기 바랍니다.
+      `
+    },
+    {
+      id: 8,
+      title: "8. 고지의 의무",
+      content: `
+**개인정보처리방침 변경시**
+• 시행 7일 이전부터 사이트 공지사항을 통해 공지
+• 중요한 변경사항의 경우 30일 이전 공지
+• 이용자에게 불리한 변경의 경우 이메일 개별 통지
+
+**현행 개인정보처리방침**
+• **시행일자**: 2025년 1월 1일
+• **최종수정**: 2025년 1월 1일
+
+본 방침은 관련 법령 및 지침의 변경이나 서비스 정책 변경에 따라 수정될 수 있습니다.
+      `
+    }
+  ];
+
+  const toggleSection = (id) => {
+    setActiveSection(activeSection === id ? null : id);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Navigation */}
+      <nav className="bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-200/50 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <a href="index.html" className="flex items-center hover:opacity-80 transition-opacity">
+                <ArrowLeft className="w-5 h-5 text-slate-600 mr-3" />
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg">
+                  <Beaker className="w-6 h-6 text-white" />
+                </div>
+                <div className="ml-3">
+                  <h1 className="text-xl font-bold text-slate-800">과학연구설계 AI</h1>
+                  <p className="text-xs text-slate-500">개인정보처리방침</p>
+                </div>
+              </a>
+            </div>
+            <div className="flex items-center space-x-4">
+              <a href="contact.html" className="text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-slate-100">
+                문의하기
+              </a>
+              <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+                <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg">
+                  바로 시작하기
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8">
+            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <Shield className="w-10 h-10 text-white" />
+            </div>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="text-slate-800">개인정보처리방침</span>
+            <br />
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Privacy Policy 🔐
+            </span>
+          </h1>
+          <p className="text-xl text-slate-600 mb-8">
+            여러분의 개인정보를 안전하게 보호하고 있습니다
+          </p>
+          <div className="bg-blue-50 rounded-2xl p-6 border border-blue-200">
+            <div className="flex items-center justify-center mb-4">
+              <CheckCircle className="w-6 h-6 text-blue-600 mr-2" />
+              <span className="font-semibold text-blue-800">시행일자: 2025년 1월 1일</span>
+            </div>
+            <p className="text-sm text-blue-700">
+              과학연구설계 AI(이하 '회사')는 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고자 다음과 같이 개인정보처리방침을 공지합니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Principles */}
+      <section className="py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              🔐 개인정보보호 원칙
+            </h2>
+            <p className="text-lg text-slate-600">
+              우리가 지키는 약속들
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center border border-blue-200">
+              <Lock className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-800 mb-3">최소 수집</h3>
+              <p className="text-sm text-slate-600">
+                서비스 제공에 꼭 필요한<br />
+                최소한의 정보만 수집합니다
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 text-center border border-green-200">
+              <Eye className="w-12 h-12 text-green-600 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-800 mb-3">투명한 공개</h3>
+              <p className="text-sm text-slate-600">
+                개인정보 처리현황을<br />
+                투명하게 공개합니다
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 text-center border border-purple-200">
+              <Shield className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-800 mb-3">안전한 보관</h3>
+              <p className="text-sm text-slate-600">
+                암호화 등 안전한 방법으로<br />
+                개인정보를 보관합니다
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 text-center border border-orange-200">
+              <Users className="w-12 h-12 text-orange-600 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-800 mb-3">이용자 권리</h3>
+              <p className="text-sm text-slate-600">
+                이용자의 권리를 최대한<br />
+                보장하고 지원합니다
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed Sections */}
+      <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              📋 상세 내용
+            </h2>
+            <p className="text-lg text-slate-600">
+              각 항목을 클릭하면 자세한 내용을 볼 수 있어요
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {sections.map((section) => {
+              const isOpen = activeSection === section.id;
+              
+              return (
+                <div key={section.id} className="bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
+                  <button 
+                    onClick={() => toggleSection(section.id)}
+                    className="w-full px-8 py-6 text-left hover:bg-slate-50 transition-colors"
+                  >
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-bold text-slate-800">
+                        {section.title}
+                      </h3>
+                      <div className="ml-4 flex-shrink-0">
+                        {isOpen ? (
+                          <AlertCircle className="w-6 h-6 text-blue-600" />
+                        ) : (
+                          <FileText className="w-6 h-6 text-slate-400" />
+                        )}
+                      </div>
+                    </div>
+                  </button>
+                  
+                  {isOpen && (
+                    <div className="px-8 pb-6">
+                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                        <div className="text-slate-700 leading-relaxed whitespace-pre-line">
+                          {section.content}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact for Privacy */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-3xl p-8 border border-green-200">
+            <Mail className="w-16 h-16 text-green-600 mx-auto mb-6" />
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              개인정보 관련 문의
+            </h2>
+            <p className="text-lg text-slate-600 mb-8">
+              개인정보 처리에 대한 문의사항이나 권리행사 요청이 있으시면<br />
+              언제든지 연락주세요!
+            </p>
+            <div className="bg-white rounded-2xl p-6 mb-6 shadow-lg">
+              <p className="text-2xl font-bold text-green-600 mb-2">littlescienceai@gmail.com</p>
+              <p className="text-sm text-slate-500">개인정보보호 담당자</p>
+            </div>
+            <a href="mailto:littlescienceai@gmail.com?subject=[개인정보보호] 문의사항">
+              <button className="bg-green-600 text-white px-8 py-4 rounded-2xl text-lg font-bold hover:bg-green-700 transition-all shadow-lg flex items-center mx-auto">
+                <Mail className="w-6 h-6 mr-3" />
+                개인정보 담당자에게 문의
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Additional Resources */}
+      <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              🔗 관련 자료
+            </h2>
+            <p className="text-lg text-slate-600">
+              개인정보보호 관련 추가 정보
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-2xl p-6 text-center shadow-lg border border-slate-200">
+              <FileText className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-slate-800 mb-3">이용약관</h3>
+              <p className="text-slate-600 mb-6">
+                서비스 이용에 관한<br />
+                전반적인 약관을 확인하세요
+              </p>
+              <a href="terms.html">
+                <button className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors">
+                  약관 보기
+                </button>
+              </a>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 text-center shadow-lg border border-slate-200">
+              <Users className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-slate-800 mb-3">학부모 가이드</h3>
+              <p className="text-slate-600 mb-6">
+                미성년자 이용시<br />
+                참고하실 가이드입니다
+              </p>
+              <a href="parents.html">
+                <button className="bg-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-purple-700 transition-colors">
+                  가이드 보기
+                </button>
+              </a>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 text-center shadow-lg border border-slate-200">
+              <Clock className="w-12 h-12 text-green-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-slate-800 mb-3">업데이트 알림</h3>
+              <p className="text-slate-600 mb-6">
+                개인정보처리방침 변경시<br />
+                이메일로 알려드려요
+              </p>
+              <a href="contact.html">
+                <button className="bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors">
+                  알림 신청
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-slate-300 py-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="flex items-center justify-center mb-6">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mr-4">
+              <Beaker className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-white">과학연구설계 AI</h3>
+              <p className="text-sm text-slate-400">개인정보를 안전하게 보호합니다</p>
+            </div>
+          </div>
+          <div className="flex justify-center space-x-8 text-sm mb-6">
+            <a href="index.html" className="hover:text-white transition-colors">홈으로</a>
+            <a href="terms.html" className="hover:text-white transition-colors">이용약관</a>
+            <a href="parents.html" className="hover:text-white transition-colors">학부모 가이드</a>
+            <a href="contact.html" className="hover:text-white transition-colors">문의하기</a>
+          </div>
+          <div className="border-t border-slate-800 pt-6">
+            <p className="text-sm text-slate-400 mb-2">
+              개인정보보호 담당자: littlescienceai@gmail.com
+            </p>
+            <p className="text-sm text-slate-400">
+              © 2025 과학연구설계 AI. 모든 권리 보유. | 시행일자: 2025년 1월 1일
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default PrivacyPage;
