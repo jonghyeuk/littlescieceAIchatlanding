@@ -88,17 +88,13 @@ const PricingPage = ({ onBackToLanding }) => {
     setResult({ type: '', message: '' });
 
     try {
-      // 🔥 CORS 우회: iframe 방식으로 변경 (새 창 대신)
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'purchase_iframe';
-      
+      // 🔥 X-Frame-Options 때문에 iframe 대신 새창 방식 사용
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = 'https://script.google.com/macros/s/AKfycbwIw2GMKVKX5pvRZbIDgrnCvl3QWHX-9zig241_YLLHDExPOzLnPxjTmMeM9FJ0yzI/exec';
-      form.target = 'purchase_iframe'; // 🔥 '_blank' 대신 iframe 사용
+      form.action = 'https://script.google.com/macros/s/AKfycbzf3jRGmmHaf5okkHfypPucV6Xj0AlOKnrTQ_dcD_Kw-PmMXAkKO-vGmAqLN7QDqFzq/exec';
+      form.target = '_blank'; // 🔥 새창에서 열기
 
-      // 데이터 추가 (기존과 동일)
+      // 데이터 추가
       const actionInput = document.createElement('input');
       actionInput.type = 'hidden';
       actionInput.name = 'action';
@@ -117,66 +113,22 @@ const PricingPage = ({ onBackToLanding }) => {
       emailInput.value = buyerEmail;
       form.appendChild(emailInput);
 
-      // 🔥 iframe과 form을 DOM에 추가
-      document.body.appendChild(iframe);
+      // 🔥 타임스탬프 추가
+      const timestampInput = document.createElement('input');
+      timestampInput.type = 'hidden';
+      timestampInput.name = 'timestamp';
+      timestampInput.value = new Date().toISOString();
+      form.appendChild(timestampInput);
+
       document.body.appendChild(form);
-
-      // 🔥 iframe 로드 이벤트 처리
-      iframe.onload = function() {
-        try {
-          const iframeContent = iframe.contentDocument || iframe.contentWindow.document;
-          const htmlContent = iframeContent.documentElement.outerHTML;
-          
-          // PayApp 리다이렉트 페이지인지 확인
-          if (htmlContent.includes('PayApp') || htmlContent.includes('결제창')) {
-            // 실제 결제창을 새 창에서 열기
-            const scripts = iframeContent.querySelectorAll('script');
-            let payAppUrl = null;
-            
-            scripts.forEach(script => {
-              const scriptText = script.textContent || script.innerText;
-              const urlMatch = scriptText.match(/window\.location\.href = ['"]([^'"]+)['"]/);
-              if (urlMatch) {
-                payAppUrl = urlMatch[1];
-              }
-            });
-            
-            if (payAppUrl) {
-              window.open(payAppUrl, '_blank');
-            }
-            
-            setResult({
-              type: 'success',
-              message: `구매 요청 완료! PayApp 결제창이 새 창에서 열립니다. ${buyerEmail}로 결제 완료 후 이용권 코드가 발송됩니다.`
-            });
-          } else if (htmlContent.includes('오류') || htmlContent.includes('에러')) {
-            setResult({
-              type: 'error',
-              message: '결제 요청 중 오류가 발생했습니다. 다시 시도해주세요.'
-            });
-          } else {
-            setResult({
-              type: 'success',
-              message: `구매 요청 완료! ${buyerEmail}로 이용권 코드가 발송됩니다.`
-            });
-          }
-        } catch (error) {
-          // CORS로 인해 결과를 읽을 수 없는 경우 (정상)
-          setResult({
-            type: 'success',
-            message: `구매 요청 완료! ${buyerEmail}로 이용권 코드가 발송됩니다. 결제창이 새 창에서 열릴 수 있습니다.`
-          });
-        }
-        
-        // 정리
-        setTimeout(() => {
-          if (iframe.parentNode) document.body.removeChild(iframe);
-          if (form.parentNode) document.body.removeChild(form);
-        }, 2000);
-      };
-
-      // form 제출
       form.submit();
+      document.body.removeChild(form);
+
+      // 성공 메시지 표시
+      setResult({
+        type: 'success',
+        message: `구매 요청 완료! ${buyerEmail}로 이용권 코드가 발송됩니다. 새 창에서 PayApp 결제를 진행해주세요.`
+      });
 
     } catch (error) {
       setResult({
