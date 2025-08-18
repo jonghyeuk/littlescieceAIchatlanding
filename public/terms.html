@@ -1,0 +1,544 @@
+import React, { useState } from 'react';
+import { 
+  ArrowLeft, 
+  Beaker, 
+  FileText,
+  Scale,
+  UserCheck,
+  CreditCard,
+  Shield,
+  AlertTriangle,
+  CheckCircle,
+  XCircle,
+  Info,
+  Clock,
+  Mail
+} from 'lucide-react';
+
+const TermsPage = () => {
+  const [activeSection, setActiveSection] = useState(null);
+
+  const sections = [
+    {
+      id: 1,
+      title: "제1조 (목적)",
+      content: `
+이 약관은 과학연구설계 AI(이하 "회사")가 제공하는 과학연구 지원 서비스(이하 "서비스")의 이용과 관련하여 회사와 이용자간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
+
+**서비스 정의**
+• AI 기반 연구주제 추천 서비스
+• 실험설계 가이드 제공
+• 연구보고서 작성 지원
+• 과학연구 관련 질의응답 서비스
+      `
+    },
+    {
+      id: 2,
+      title: "제2조 (정의)",
+      content: `
+1. **"서비스"**란 회사가 제공하는 과학연구설계 AI 관련 제반 서비스를 의미합니다.
+
+2. **"이용자"**란 회사의 서비스에 접속하여 이 약관에 따라 회사가 제공하는 서비스를 받는 자를 말합니다.
+
+3. **"회원"**란 회사에 개인정보를 제공하여 회원등록을 한 자로서, 회사의 정보를 지속적으로 제공받으며 회사가 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.
+
+4. **"비회원"**란 회원에 가입하지 않고 회사가 제공하는 서비스를 이용하는 자를 말합니다.
+
+5. **"이용권"**란 유료 서비스 이용을 위해 구매하는 권리를 말합니다.
+      `
+    },
+    {
+      id: 3,
+      title: "제3조 (약관의 효력 및 변경)",
+      content: `
+1. 이 약관은 서비스 화면에 게시하거나 기타의 방법으로 공지함으로써 효력이 발생합니다.
+
+2. 회사는 필요하다고 인정되는 경우 이 약관을 변경할 수 있으며, 변경된 약관은 제1항과 같은 방법으로 공지 또는 통지함으로써 효력이 발생합니다.
+
+3. 약관이 변경되는 경우 회사는 변경사유 및 적용일자를 명시하여 현행약관과 함께 서비스 초기화면에 7일 이전부터 적용일 후 상당한 기간 동안 공지합니다.
+
+4. 이용자가 변경된 약관에 동의하지 않는 경우, 서비스 이용을 중단하고 탈퇴할 수 있습니다.
+      `
+    },
+    {
+      id: 4,
+      title: "제4조 (서비스의 제공)",
+      content: `
+1. **제공 서비스**
+   • AI 연구주제 추천 및 가이드
+   • 실험설계 및 방법론 지원
+   • 연구보고서 작성 도움
+   • 과학연구 관련 질의응답
+   • 연구 자료 및 정보 제공
+
+2. **서비스 이용시간**
+   • 연중무휴, 1일 24시간 제공
+   • 단, 정기점검, 서버 장애 등의 경우 일시 중단될 수 있음
+
+3. **서비스 제공의 중단**
+   • 컴퓨터 등 정보통신설비의 보수점검, 교체 및 고장
+   • 통신의 두절 등의 경우
+   • 기타 회사가 서비스 제공을 지속할 수 없는 사유 발생시
+      `
+    },
+    {
+      id: 5,
+      title: "제5조 (이용계약의 성립)",
+      content: `
+1. **무료 서비스**: 별도의 계약 없이 누구나 이용 가능합니다.
+
+2. **유료 서비스**: 이용권 구매를 통해 이용계약이 성립됩니다.
+
+3. **회원가입**
+   • 이용자가 약관의 내용에 대하여 동의를 하고 회원가입 신청을 한 경우
+   • 회사가 위 신청에 대하여 승낙한 때에 성립
+
+4. **가입 거부 사유**
+   • 실명이 아니거나 타인의 명의를 이용한 경우
+   • 미성년자가 법정대리인의 동의를 얻지 않은 경우
+   • 기타 회사가 정한 이용신청 요건이 미비된 경우
+      `
+    },
+    {
+      id: 6,
+      title: "제6조 (이용료 및 결제)",
+      content: `
+1. **무료 서비스**: 6분간 무료 체험 제공
+
+2. **유료 서비스**: 이용권 구매 필요
+   • 월 이용권, 연간 이용권 등 다양한 옵션 제공
+   • 구체적인 요금은 서비스 내에서 확인 가능
+
+3. **결제 방법**
+   • 신용카드, 계좌이체, 간편결제 등
+   • 결제는 승인된 결제수단을 통해서만 가능
+
+4. **환불 정책**
+   • 이용권 구매 후 7일 이내 미사용시 전액 환불
+   • 부분 사용시 사용일수만큼 차감 후 환불
+   • 단, 무료체험 이용 후에는 별도 환불 불가
+      `
+    },
+    {
+      id: 7,
+      title: "제7조 (이용자의 의무)",
+      content: `
+1. **금지 행위**
+   • 타인의 개인정보 도용
+   • 서비스의 안정적 운영을 방해하는 행위
+   • 타인의 명예를 손상시키거나 불이익을 주는 행위
+   • 저작권 등 타인의 권리를 침해하는 행위
+   • 음란하거나 폭력적인 내용의 입력
+   • 허위 정보의 유포
+
+2. **이용자 책임**
+   • 자신의 계정정보에 대한 관리 책임
+   • 서비스 이용 중 발생하는 모든 활동에 대한 책임
+   • 관련 법령 및 약관 준수 의무
+
+3. **연구윤리 준수**
+   • 연구의 진실성 유지
+   • 표절 및 부정행위 금지
+   • 실험 안전수칙 준수
+      `
+    },
+    {
+      id: 8,
+      title: "제8조 (회사의 의무)",
+      content: `
+1. **서비스 제공 의무**
+   • 지속적이고 안정적인 서비스 제공
+   • 서비스 품질 향상을 위한 지속적 개선
+   • 이용자의 개인정보보호를 위한 조치
+
+2. **고객지원**
+   • 이용자의 문의사항에 대한 신속한 답변
+   • 서비스 이용 중 문제 발생시 적극적 해결
+
+3. **제한사항**
+   • AI 서비스의 특성상 100% 정확한 답변을 보장하지 않음
+   • 이용자의 연구결과에 대해서는 책임을 지지 않음
+   • 서비스를 통해 제공되는 정보는 참고용이며, 최종 결정은 이용자의 책임
+      `
+    },
+    {
+      id: 9,
+      title: "제9조 (저작권 및 지적재산권)",
+      content: `
+1. **회사의 권리**
+   • 서비스에 포함된 모든 콘텐츠의 저작권은 회사에 귀속
+   • AI 모델, 알고리즘, 데이터베이스에 대한 지적재산권 보유
+
+2. **이용자의 권리**
+   • 이용자가 생성한 연구내용에 대한 저작권은 이용자에게 귀속
+   • 단, 서비스 개선을 위해 익명화된 데이터 활용에 동의
+
+3. **사용 제한**
+   • 회사의 사전 승낙 없이 서비스의 일부 또는 전부를 복사, 수정, 배포 금지
+   • 상업적 목적으로 서비스를 무단 사용하는 행위 금지
+
+4. **제3자 콘텐츠**
+   • 서비스에 포함된 제3자 콘텐츠는 해당 권리자에게 권리가 있음
+   • 이용자는 관련 저작권법 등을 준수해야 함
+      `
+    },
+    {
+      id: 10,
+      title: "제10조 (이용제한 및 서비스 중단)",
+      content: `
+1. **이용제한 사유**
+   • 본 약관 위반시
+   • 타인의 권리침해나 명예훼손 등의 행위
+   • 서비스의 정상적인 운영을 방해하는 행위
+   • 관련 법령 위반시
+
+2. **제재 조치**
+   • 경고, 일시정지, 영구정지 등
+   • 제재의 정도는 위반의 정도에 따라 결정
+
+3. **서비스 중단**
+   • 천재지변, 전쟁, 파업 등 불가항력적 사유
+   • 정전, 서버 장애 등 기술적 문제
+   • 서비스 개선을 위한 정기점검
+
+4. **통지**
+   • 이용제한시 사전 통지 원칙
+   • 긴급한 경우 사후 통지 가능
+      `
+    },
+    {
+      id: 11,
+      title: "제11조 (면책조항)",
+      content: `
+1. **회사의 면책사유**
+   • 천재지변 등 불가항력으로 인한 서비스 중단
+   • 이용자의 귀책사유로 인한 서비스 이용장애
+   • 이용자 상호간 또는 이용자와 제3자간의 분쟁
+
+2. **AI 서비스 특성**
+   • AI가 제공하는 정보의 정확성을 100% 보장하지 않음
+   • 연구결과나 학업성취에 대한 책임을 지지 않음
+   • 이용자는 AI 정보를 참고용으로만 활용해야 함
+
+3. **손해배상 제한**
+   • 회사의 고의 또는 중과실이 없는 한 간접손해에 대해 책임을 지지 않음
+   • 손해배상 범위는 이용자가 지급한 서비스 이용료를 초과하지 않음
+
+4. **제3자 서비스**
+   • 연동된 제3자 서비스로 인한 문제는 해당 업체의 책임
+      `
+    },
+    {
+      id: 12,
+      title: "제12조 (분쟁해결)",
+      content: `
+1. **준거법**: 대한민국 법률을 적용합니다.
+
+2. **관할법원**: 서울중앙지방법원을 제1심 관할법원으로 합니다.
+
+3. **분쟁조정**
+   • 서비스 이용과 관련된 분쟁은 상호 협의를 통해 해결
+   • 협의가 이루어지지 않을 경우 소비자분쟁조정위원회에 조정 신청 가능
+
+4. **손해배상**
+   • 회사 또는 이용자가 약관 위반으로 상대방에게 손해를 끼친 경우 배상 책임
+   • 입증 책임은 손해를 주장하는 당사자에게 있음
+
+**부칙**
+이 약관은 2025년 1월 1일부터 시행됩니다.
+      `
+    }
+  ];
+
+  const toggleSection = (id) => {
+    setActiveSection(activeSection === id ? null : id);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Navigation */}
+      <nav className="bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-200/50 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <a href="index.html" className="flex items-center hover:opacity-80 transition-opacity">
+                <ArrowLeft className="w-5 h-5 text-slate-600 mr-3" />
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg">
+                  <Beaker className="w-6 h-6 text-white" />
+                </div>
+                <div className="ml-3">
+                  <h1 className="text-xl font-bold text-slate-800">과학연구설계 AI</h1>
+                  <p className="text-xs text-slate-500">이용약관</p>
+                </div>
+              </a>
+            </div>
+            <div className="flex items-center space-x-4">
+              <a href="privacy.html" className="text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-slate-100">
+                개인정보처리방침
+              </a>
+              <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+                <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg">
+                  바로 시작하기
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8">
+            <div className="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <Scale className="w-10 h-10 text-white" />
+            </div>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="text-slate-800">이용약관</span>
+            <br />
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              Terms of Service ⚖️
+            </span>
+          </h1>
+          <p className="text-xl text-slate-600 mb-8">
+            서비스 이용에 관한 권리와 의무를 안내해드립니다
+          </p>
+          <div className="bg-indigo-50 rounded-2xl p-6 border border-indigo-200">
+            <div className="flex items-center justify-center mb-4">
+              <Clock className="w-6 h-6 text-indigo-600 mr-2" />
+              <span className="font-semibold text-indigo-800">시행일자: 2025년 1월 1일</span>
+            </div>
+            <p className="text-sm text-indigo-700">
+              본 약관은 과학연구설계 AI 서비스 이용에 관한 기본적인 사항을 규정하며, 서비스를 이용하시면 본 약관에 동의하신 것으로 간주됩니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Points */}
+      <section className="py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              📋 주요 내용 요약
+            </h2>
+            <p className="text-lg text-slate-600">
+              이용약관의 핵심 내용을 한눈에 확인하세요
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center border border-blue-200">
+              <UserCheck className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-800 mb-3">이용자 권리</h3>
+              <ul className="text-sm text-slate-600 space-y-1">
+                <li>• 6분 무료체험</li>
+                <li>• 개인정보 보호</li>
+                <li>• 연구결과 저작권</li>
+                <li>• 서비스 이용권리</li>
+              </ul>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 text-center border border-green-200">
+              <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-800 mb-3">이용자 의무</h3>
+              <ul className="text-sm text-slate-600 space-y-1">
+                <li>• 약관 및 법령 준수</li>
+                <li>• 연구윤리 준수</li>
+                <li>• 타인 권리 존중</li>
+                <li>• 정확한 정보 제공</li>
+              </ul>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 text-center border border-purple-200">
+              <CreditCard className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-800 mb-3">결제 및 환불</h3>
+              <ul className="text-sm text-slate-600 space-y-1">
+                <li>• 다양한 이용권 옵션</li>
+                <li>• 안전한 결제시스템</li>
+                <li>• 7일 이내 환불가능</li>
+                <li>• 투명한 요금정책</li>
+              </ul>
+            </div>
+
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 text-center border border-orange-200">
+              <Shield className="w-12 h-12 text-orange-600 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-800 mb-3">서비스 보장</h3>
+              <ul className="text-sm text-slate-600 space-y-1">
+                <li>• 24시간 서비스 제공</li>
+                <li>• 지속적인 품질개선</li>
+                <li>• 고객지원 서비스</li>
+                <li>• 개인정보 보호</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Important Notes */}
+      <section className="py-12 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              ⚠️ 꼭 확인해주세요
+            </h2>
+          </div>
+
+          <div className="space-y-6">
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
+              <div className="flex items-start space-x-4">
+                <AlertTriangle className="w-8 h-8 text-amber-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-lg font-bold text-amber-800 mb-2">AI 서비스 특성 안내</h3>
+                  <p className="text-amber-700">
+                    본 서비스는 AI 기술을 활용한 연구 지원 도구입니다. AI가 제공하는 정보는 참고용이며, 
+                    100% 정확성을 보장하지 않습니다. 최종적인 연구 결정과 책임은 이용자에게 있습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+              <div className="flex items-start space-x-4">
+                <Info className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-lg font-bold text-blue-800 mb-2">미성년자 이용 안내</h3>
+                  <p className="text-blue-700">
+                    만 14세 미만의 이용자는 법정대리인의 동의가 필요합니다. 
+                    연구활동 시에는 반드시 성인의 지도하에 안전하게 진행해주세요.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
+              <div className="flex items-start space-x-4">
+                <CheckCircle className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-lg font-bold text-green-800 mb-2">연구윤리 준수</h3>
+                  <p className="text-green-700">
+                    모든 연구는 연구윤리를 준수하여 진행되어야 하며, 표절이나 부정행위는 금지됩니다. 
+                    AI의 도움을 받은 경우에도 적절한 출처 표기가 필요합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed Terms */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              📖 상세 약관
+            </h2>
+            <p className="text-lg text-slate-600">
+              각 조항을 클릭하면 자세한 내용을 확인할 수 있습니다
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {sections.map((section) => {
+              const isOpen = activeSection === section.id;
+              
+              return (
+                <div key={section.id} className="bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
+                  <button 
+                    onClick={() => toggleSection(section.id)}
+                    className="w-full px-8 py-6 text-left hover:bg-slate-50 transition-colors"
+                  >
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-bold text-slate-800">
+                        {section.title}
+                      </h3>
+                      <div className="ml-4 flex-shrink-0">
+                        {isOpen ? (
+                          <XCircle className="w-6 h-6 text-indigo-600" />
+                        ) : (
+                          <FileText className="w-6 h-6 text-slate-400" />
+                        )}
+                      </div>
+                    </div>
+                  </button>
+                  
+                  {isOpen && (
+                    <div className="px-8 pb-6">
+                      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100">
+                        <div className="text-slate-700 leading-relaxed whitespace-pre-line">
+                          {section.content}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Agreement Section */}
+      <section className="py-16 bg-gradient-to-br from-indigo-600 to-purple-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Scale className="w-16 h-16 text-white mx-auto mb-6" />
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            약관에 동의하고<br />
+            과학연구를 시작해보세요! 🚀
+          </h2>
+          <p className="text-xl text-indigo-100 mb-8 leading-relaxed">
+            서비스를 이용하시면 본 약관에 동의하신 것으로 간주됩니다.<br />
+            궁금한 사항이 있으시면 언제든지 문의해주세요!
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+              <button className="bg-white text-indigo-600 px-10 py-4 rounded-2xl text-lg font-bold hover:bg-indigo-50 transition-all shadow-xl flex items-center">
+                <CheckCircle className="w-6 h-6 mr-3" />
+                동의하고 시작하기
+              </button>
+            </a>
+            <a href="contact.html">
+              <button className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white px-10 py-4 rounded-2xl text-lg font-bold hover:bg-white/20 transition-all flex items-center">
+                <Mail className="w-6 h-6 mr-3" />
+                약관 관련 문의
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-slate-300 py-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="flex items-center justify-center mb-6">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mr-4">
+              <Beaker className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-white">과학연구설계 AI</h3>
+              <p className="text-sm text-slate-400">투명하고 공정한 서비스 제공</p>
+            </div>
+          </div>
+          <div className="flex justify-center space-x-8 text-sm mb-6">
+            <a href="index.html" className="hover:text-white transition-colors">홈으로</a>
+            <a href="privacy.html" className="hover:text-white transition-colors">개인정보처리방침</a>
+            <a href="parents.html" className="hover:text-white transition-colors">학부모 가이드</a>
+            <a href="contact.html" className="hover:text-white transition-colors">문의하기</a>
+          </div>
+          <div className="border-t border-slate-800 pt-6">
+            <p className="text-sm text-slate-400 mb-2">
+              약관 관련 문의: littlescienceai@gmail.com
+            </p>
+            <p className="text-sm text-slate-400">
+              © 2025 과학연구설계 AI. 모든 권리 보유. | 시행일자: 2025년 1월 1일
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default TermsPage;
