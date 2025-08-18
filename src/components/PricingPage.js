@@ -362,20 +362,20 @@ const PricingPage = () => {
             <div>
               <h4 className="font-bold text-white mb-6 text-lg">결제 및 지원</h4>
               <ul className="space-y-3">
-                <li><a href="#" className="hover:text-white transition-colors text-sm">결제 방법</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">환불 정책</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">이용약관</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">개인정보처리방침</a></li>
+                <li><a href="terms.html" className="hover:text-white transition-colors text-sm">결제 방법</a></li>
+                <li><a href="terms.html" className="hover:text-white transition-colors text-sm">환불 정책</a></li>
+                <li><a href="terms.html" className="hover:text-white transition-colors text-sm">이용약관</a></li>
+                <li><a href="privacy.html" className="hover:text-white transition-colors text-sm">개인정보처리방침</a></li>
               </ul>
             </div>
             
             <div>
               <h4 className="font-bold text-white mb-6 text-lg">고객지원</h4>
               <ul className="space-y-3">
-                <li><a href="#" className="hover:text-white transition-colors text-sm">사용방법 안내</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">자주묻는질문</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">문의하기</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">피드백 보내기</a></li>
+                <li><a href="help.html" className="hover:text-white transition-colors text-sm">사용방법 안내</a></li>
+                <li><a href="faq.html" className="hover:text-white transition-colors text-sm">자주묻는질문</a></li>
+                <li><a href="contact.html" className="hover:text-white transition-colors text-sm">문의하기</a></li>
+                <li><a href="contact.html" className="hover:text-white transition-colors text-sm">피드백 보내기</a></li>
               </ul>
             </div>
           </div>
