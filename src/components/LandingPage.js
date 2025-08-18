@@ -407,20 +407,20 @@ const LandingPage = () => {
             <div>
               <h4 className="font-bold text-white mb-6 text-lg">주요 기능</h4>
               <ul className="space-y-3">
-                <li><a href="#" className="hover:text-white transition-colors text-sm">연구주제 추천</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">실험설계 가이드</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">보고서 자동작성</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">AI 질문답변</a></li>
+                <li><span className="text-slate-400 text-sm">연구주제 추천 대회출품작 조회</span></li>
+                <li><span className="text-slate-400 text-sm">실험설계 가이드</span></li>
+                <li><span className="text-slate-400 text-sm">보고서 자동작성</span></li>
+                <li><span className="text-slate-400 text-sm">AI 질문답변</span></li>
               </ul>
             </div>
             
             <div>
               <h4 className="font-bold text-white mb-6 text-lg">고객지원</h4>
               <ul className="space-y-3">
-                <li><a href="#" className="hover:text-white transition-colors text-sm">사용방법 안내</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">자주묻는질문</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">문의하기</a></li>
-                <li><a href="#" className="hover:text-white transition-colors text-sm">피드백 보내기</a></li>
+                <li><a href="help.html" className="hover:text-white transition-colors text-sm">사용방법 안내</a></li>
+                <li><a href="faq.html" className="hover:text-white transition-colors text-sm">자주묻는질문</a></li>
+                <li><a href="contact.html" className="hover:text-white transition-colors text-sm">문의하기</a></li>
+                <li><a href="contact.html" className="hover:text-white transition-colors text-sm">피드백 보내기</a></li>
               </ul>
             </div>
           </div>
@@ -430,9 +430,9 @@ const LandingPage = () => {
               © 2025 과학연구설계 AI. 모든 권리 보유.
             </p>
             <div className="flex items-center text-sm text-slate-400 space-x-6">
-              <a href="#" className="hover:text-white transition-colors">개인정보처리방침</a>
-              <a href="#" className="hover:text-white transition-colors">이용약관</a>
-              <a href="#" className="hover:text-white transition-colors">학부모 가이드</a>
+              <a href="privacy.html" className="hover:text-white transition-colors">개인정보처리방침</a>
+              <a href="terms.html" className="hover:text-white transition-colors">이용약관</a>
+              <a href="parents.html" className="hover:text-white transition-colors">지도교사/학부모 가이드</a>
             </div>
           </div>
         </div>
