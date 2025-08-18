@@ -13,10 +13,7 @@ import {
   CheckCircle,
   Check,
   ArrowLeft,
-  Shield,
-  Zap,
-  Target,
-  TrendingUp
+  Shield
 } from 'lucide-react';
 
 const App = () => {
