@@ -1,0 +1,309 @@
+import React, { useState } from 'react';
+import { 
+  ArrowLeft, 
+  Beaker, 
+  ChevronDown, 
+  ChevronUp,
+  HelpCircle,
+  Clock,
+  Users,
+  CreditCard,
+  Shield,
+  BookOpen,
+  MessageCircle
+} from 'lucide-react';
+
+const FaqPage = () => {
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const faqs = [
+    {
+      id: 1,
+      icon: Clock,
+      category: "사용방법",
+      question: "과학연구설계 AI는 어떻게 사용하나요?",
+      answer: "회원가입 없이 바로 사용할 수 있어요! littlescienceaichat.web.app에 접속해서 관심있는 연구분야(예: 환경오염, 우주, AI 등)를 입력하면 AI가 연구주제를 추천해드려요. 그 다음 실험방법, 보고서 작성까지 단계별로 도와드립니다."
+    },
+    {
+      id: 2,
+      icon: Users,
+      category: "대상",
+      question: "고등학생이 아니어도 사용할 수 있나요?",
+      answer: "물론이에요! 중학생, 대학생, 심지어 과학에 관심있는 일반인도 사용하실 수 있습니다. 다만 주로 고등학생 수준의 연구활동에 최적화되어 있어서, 고등학생들에게 가장 유용해요. 더 어린 학생들도 부모님이나 선생님과 함께 사용하시면 좋습니다."
+    },
+    {
+      id: 3,
+      icon: CreditCard,
+      category: "요금",
+      question: "무료로 사용할 수 있나요? 요금은 얼마인가요?",
+      answer: "6분간 무료로 체험해보실 수 있어요! 무료체험 후에는 이용권을 구매하셔야 합니다. 월 이용권, 연간 이용권 등 다양한 옵션이 있으며, 자세한 요금은 사이트의 '이용권 구매' 버튼을 클릭해서 확인하실 수 있습니다."
+    },
+    {
+      id: 4,
+      icon: BookOpen,
+      category: "기능",
+      question: "어떤 종류의 연구를 도와주나요?",
+      answer: "물리, 화학, 생물, 지구과학, 환경과학, 컴퓨터과학 등 모든 과학 분야를 다뤄요! ISEF 국제과학경진대회, 전국과학전람회, 청소년과학탐구대회, R&E 연구활동 등 20,000개 이상의 수상작 데이터를 바탕으로 여러분에게 맞는 연구주제를 추천해드립니다."
+    },
+    {
+      id: 5,
+      icon: Shield,
+      category: "안전성",
+      question: "AI가 추천하는 실험이 안전한가요?",
+      answer: "네, 안전을 최우선으로 생각합니다! AI는 고등학생이 학교나 집에서 안전하게 할 수 있는 실험만 추천해요. 위험한 화학물질이나 복잡한 장비가 필요한 실험은 제외하고, 항상 안전 주의사항도 함께 알려드립니다. 하지만 실험할 때는 반드시 선생님이나 부모님과 함께 하세요!"
+    },
+    {
+      id: 6,
+      icon: MessageCircle,
+      category: "지원",
+      question: "AI가 이해하지 못하는 질문이 있으면 어떻게 하나요?",
+      answer: "AI가 완벽하지 않을 수 있어요. 만약 AI가 잘 이해하지 못한다면, 질문을 좀 더 구체적으로 바꿔서 다시 물어보세요. 예를 들어 '연구주제 추천해주세요' 보다는 '미세먼지가 식물 성장에 미치는 영향에 대한 실험을 하고 싶어요'라고 하면 더 좋은 답변을 받을 수 있어요. 그래도 해결되지 않으면 littlescienceai@gmail.com으로 문의주세요!"
+    },
+    {
+      id: 7,
+      icon: HelpCircle,
+      category: "결과",
+      question: "이 AI를 사용하면 정말 연구에서 좋은 결과를 얻을 수 있나요?",
+      answer: "네! 이미 2,000명 이상의 고등학생들이 사용해서 좋은 결과를 얻고 있어요. 평균적으로 연구시간이 70% 단축되고, AI의 도움으로 더 체계적이고 완성도 높은 연구를 할 수 있습니다. 하지만 가장 중요한 건 여러분의 노력과 열정이에요! AI는 도구일 뿐, 실제 실험과 연구는 여러분이 직접 해야 합니다."
+    }
+  ];
+
+  const toggleFaq = (id) => {
+    setOpenFaq(openFaq === id ? null : id);
+  };
+
+  const getCategoryColor = (category) => {
+    const colors = {
+      "사용방법": "bg-blue-100 text-blue-800",
+      "대상": "bg-green-100 text-green-800",
+      "요금": "bg-purple-100 text-purple-800",
+      "기능": "bg-orange-100 text-orange-800",
+      "안전성": "bg-red-100 text-red-800",
+      "지원": "bg-indigo-100 text-indigo-800",
+      "결과": "bg-pink-100 text-pink-800"
+    };
+    return colors[category] || "bg-gray-100 text-gray-800";
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Navigation */}
+      <nav className="bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-200/50 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <a href="index.html" className="flex items-center hover:opacity-80 transition-opacity">
+                <ArrowLeft className="w-5 h-5 text-slate-600 mr-3" />
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg">
+                  <Beaker className="w-6 h-6 text-white" />
+                </div>
+                <div className="ml-3">
+                  <h1 className="text-xl font-bold text-slate-800">과학연구설계 AI</h1>
+                  <p className="text-xs text-slate-500">자주묻는질문</p>
+                </div>
+              </a>
+            </div>
+            <div className="flex items-center space-x-4">
+              <a href="help.html" className="text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-slate-100">
+                사용방법
+              </a>
+              <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+                <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg">
+                  바로 시작하기
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8">
+            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <HelpCircle className="w-10 h-10 text-white" />
+            </div>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="text-slate-800">자주묻는질문</span>
+            <br />
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              FAQ ❓
+            </span>
+          </h1>
+          <p className="text-xl text-slate-600 mb-8">
+            궁금한 게 있으신가요? 가장 자주 묻는 질문들을 모았어요!
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-6">
+            {faqs.map((faq) => {
+              const IconComponent = faq.icon;
+              const isOpen = openFaq === faq.id;
+              
+              return (
+                <div key={faq.id} className="bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
+                  <button 
+                    onClick={() => toggleFaq(faq.id)}
+                    className="w-full px-8 py-6 text-left hover:bg-slate-50 transition-colors"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-start space-x-4 flex-1">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <IconComponent className="w-6 h-6 text-blue-600" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-3 mb-2">
+                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getCategoryColor(faq.category)}`}>
+                              {faq.category}
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold text-slate-800 leading-tight">
+                            {faq.question}
+                          </h3>
+                        </div>
+                      </div>
+                      <div className="ml-4 flex-shrink-0">
+                        {isOpen ? (
+                          <ChevronUp className="w-6 h-6 text-slate-400" />
+                        ) : (
+                          <ChevronDown className="w-6 h-6 text-slate-400" />
+                        )}
+                      </div>
+                    </div>
+                  </button>
+                  
+                  {isOpen && (
+                    <div className="px-8 pb-6">
+                      <div className="pl-16">
+                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                          <p className="text-slate-700 leading-relaxed">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Links */}
+      <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              더 궁금한 게 있으신가요? 🤔
+            </h2>
+            <p className="text-lg text-slate-600">
+              여기서 답을 찾지 못하셨다면 이쪽을 확인해보세요!
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-2xl p-8 text-center shadow-lg border border-slate-200 hover:shadow-xl transition-shadow">
+              <BookOpen className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-slate-800 mb-3">사용방법 가이드</h3>
+              <p className="text-slate-600 mb-6">
+                단계별로 자세한 사용방법을<br />
+                확인하실 수 있어요
+              </p>
+              <a href="help.html">
+                <button className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors">
+                  가이드 보기
+                </button>
+              </a>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 text-center shadow-lg border border-slate-200 hover:shadow-xl transition-shadow">
+              <MessageCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-slate-800 mb-3">직접 문의하기</h3>
+              <p className="text-slate-600 mb-6">
+                개별 질문이나 문제가 있으시면<br />
+                언제든지 연락주세요
+              </p>
+              <a href="contact.html">
+                <button className="bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors">
+                  문의하기
+                </button>
+              </a>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 text-center shadow-lg border border-slate-200 hover:shadow-xl transition-shadow">
+              <Clock className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-slate-800 mb-3">6분 무료체험</h3>
+              <p className="text-slate-600 mb-6">
+                직접 사용해보시는 게<br />
+                가장 빠른 방법이에요!
+              </p>
+              <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+                <button className="bg-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-purple-700 transition-colors">
+                  체험하기
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-br from-blue-600 to-indigo-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            답을 찾으셨나요? 🎉
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            이제 바로 연구를 시작해보세요!
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+              <button className="bg-white text-blue-600 px-10 py-4 rounded-2xl text-lg font-bold hover:bg-blue-50 transition-all shadow-xl flex items-center">
+                <Clock className="w-6 h-6 mr-3" />
+                6분 무료체험
+              </button>
+            </a>
+            <a href="help.html">
+              <button className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white px-10 py-4 rounded-2xl text-lg font-bold hover:bg-white/20 transition-all flex items-center">
+                <BookOpen className="w-6 h-6 mr-3" />
+                사용방법 보기
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-slate-300 py-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="flex items-center justify-center mb-6">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mr-4">
+              <Beaker className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-white">과학연구설계 AI</h3>
+              <p className="text-sm text-slate-400">고등학생 연구활동 전문 도우미</p>
+            </div>
+          </div>
+          <div className="flex justify-center space-x-8 text-sm">
+            <a href="index.html" className="hover:text-white transition-colors">홈으로</a>
+            <a href="help.html" className="hover:text-white transition-colors">사용방법</a>
+            <a href="contact.html" className="hover:text-white transition-colors">문의하기</a>
+          </div>
+          <div className="mt-8 pt-8 border-t border-slate-800 text-sm text-slate-400">
+            © 2025 과학연구설계 AI. 모든 권리 보유.
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default FaqPage;
