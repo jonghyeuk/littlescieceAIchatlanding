@@ -1,733 +1,759 @@
-import React, { useState } from 'react';
-import { 
-  ArrowLeft, 
-  Beaker, 
-  Users,
-  Heart,
-  Shield,
-  BookOpen,
-  Eye,
-  AlertTriangle,
-  CheckCircle,
-  Lightbulb,
-  Target,
-  Clock,
-  Star,
-  Mail,
-  Home,
-  Award,
-  MessageCircle,
-  Lock,
-  TrendingUp
-} from 'lucide-react';
-
-const ParentsPage = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-
-  const tabs = [
-    { id: 'overview', label: '서비스 소개', icon: BookOpen },
-    { id: 'safety', label: '안전성 안내', icon: Shield },
-    { id: 'guidance', label: '학생 지도법', icon: Users },
-    { id: 'benefits', label: '교육 효과', icon: Star },
-    { id: 'precautions', label: '주의사항', icon: AlertTriangle }
-  ];
-
-  const TabContent = ({ tabId }) => {
-    switch(tabId) {
-      case 'overview':
-        return (
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-8 border border-blue-200">
-              <div className="flex items-start space-x-6">
-                <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Beaker className="w-8 h-8 text-white" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지도교사/학부모 가이드 - 과학연구설계 AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button.active { 
+            background: linear-gradient(to right, #2563eb, #4f46e5);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-200/50 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                        <svg class="w-5 h-5 text-slate-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 7.172V5L8 4z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <h1 class="text-xl font-bold text-slate-800">과학연구설계 AI</h1>
+                            <p class="text-xs text-slate-500">지도교사/학부모 가이드</p>
+                        </div>
+                    </a>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-800 mb-4">과학연구설계 AI란?</h3>
-                  <p className="text-slate-700 leading-relaxed mb-4">
-                    고등학생들의 과학연구활동을 돕는 AI 교육 도구입니다. 
-                    ISEF, 전국과학전람회, R&E 등 20,000개 이상의 수상작 데이터를 바탕으로 
-                    연구주제 추천부터 실험설계, 보고서 작성까지 단계별로 지원합니다.
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-4 text-sm">
-                    <div className="bg-white rounded-lg p-4">
-                      <h4 className="font-semibold text-blue-800 mb-2">💡 주요 기능</h4>
-                      <ul className="space-y-1 text-slate-600">
-                        <li>• 연구주제 추천 및 가이드</li>
-                        <li>• 실험설계 방법 안내</li>
-                        <li>• 보고서 작성 지원</li>
-                        <li>• 24시간 질의응답</li>
-                      </ul>
-                    </div>
-                    <div className="bg-white rounded-lg p-4">
-                      <h4 className="font-semibold text-blue-800 mb-2">🎯 교육 목표</h4>
-                      <ul className="space-y-1 text-slate-600">
-                        <li>• 과학적 사고력 향상</li>
-                        <li>• 연구방법론 학습</li>
-                        <li>• 문제해결능력 개발</li>
-                        <li>• 창의적 연구역량 강화</li>
-                      </ul>
-                    </div>
-                  </div>
+                <div class="flex items-center space-x-4">
+                    <a href="contact.html" class="text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-slate-100">
+                        문의하기
+                    </a>
+                    <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg">
+                            바로 시작하기
+                        </button>
+                    </a>
                 </div>
-              </div>
             </div>
+        </div>
+    </nav>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
-                <Clock className="w-10 h-10 text-green-600 mb-4" />
-                <h4 className="text-lg font-bold text-slate-800 mb-3">학습시간 단축</h4>
-                <p className="text-slate-600 text-sm">
-                  평균 70% 연구시간 단축으로 더 깊이 있는 학습에 집중할 수 있어요
+    <!-- Hero Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8">
+                <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                <span class="text-slate-800">지도교사/학부모 가이드</span>
+                <br>
+                <span class="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+                    Teacher & Parents Guide 👨‍🏫👨‍👩‍👧‍👦
+                </span>
+            </h1>
+            <p class="text-xl text-slate-600 mb-8">
+                학생의 과학연구 활동을 효과적으로 지도하는 방법을 안내해드립니다
+            </p>
+            <div class="bg-pink-50 rounded-2xl p-6 border border-pink-200">
+                <p class="text-pink-800 leading-relaxed">
+                    과학연구설계 AI는 <strong>교육용 도구</strong>입니다. 
+                    학생이 안전하고 창의적으로 과학을 탐구할 수 있도록 
+                    <strong>선생님과 학부모님의 관심과 지도</strong>가 함께할 때 더욱 효과적입니다.
                 </p>
-              </div>
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
-                <Award className="w-10 h-10 text-purple-600 mb-4" />
-                <h4 className="text-lg font-bold text-slate-800 mb-3">실제 수상사례</h4>
-                <p className="text-slate-600 text-sm">
-                  AI 도움으로 체계적인 연구를 진행해 실제 대회에서 수상한 학생들이 많아요
-                </p>
-              </div>
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
-                <TrendingUp className="w-10 h-10 text-blue-600 mb-4" />
-                <h4 className="text-lg font-bold text-slate-800 mb-3">성취감 향상</h4>
-                <p className="text-slate-600 text-sm">
-                  단계별 성공경험으로 과학에 대한 흥미와 자신감이 크게 향상돼요
-                </p>
-              </div>
             </div>
-          </div>
-        );
+        </div>
+    </section>
 
-      case 'safety':
-        return (
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-3xl p-8 border border-green-200">
-              <div className="flex items-start space-x-6">
-                <div className="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-800 mb-4">안전한 서비스 환경</h3>
-                  <p className="text-slate-700 leading-relaxed mb-6">
-                    자녀가 안전하게 학습할 수 있도록 다양한 보호 조치를 마련했습니다.
-                  </p>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <div className="bg-white rounded-lg p-4">
-                        <div className="flex items-center mb-2">
-                          <Lock className="w-5 h-5 text-green-600 mr-2" />
-                          <h4 className="font-semibold text-slate-800">개인정보 보호</h4>
-                        </div>
-                        <ul className="text-sm text-slate-600 space-y-1">
-                          <li>• 최소한의 정보만 수집</li>
-                          <li>• 암호화된 데이터 저장</li>
-                          <li>• 제3자 제공 금지</li>
-                          <li>• 법정대리인 동의 시스템</li>
-                        </ul>
-                      </div>
-                      
-                      <div className="bg-white rounded-lg p-4">
-                        <div className="flex items-center mb-2">
-                          <Eye className="w-5 h-5 text-green-600 mr-2" />
-                          <h4 className="font-semibold text-slate-800">콘텐츠 필터링</h4>
-                        </div>
-                        <ul className="text-sm text-slate-600 space-y-1">
-                          <li>• 교육적 내용만 제공</li>
-                          <li>• 부적절한 내용 차단</li>
-                          <li>• 안전한 실험만 추천</li>
-                          <li>• 실시간 모니터링</li>
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <div className="bg-white rounded-lg p-4">
-                        <div className="flex items-center mb-2">
-                          <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
-                          <h4 className="font-semibold text-slate-800">실험 안전성</h4>
-                        </div>
-                        <ul className="text-sm text-slate-600 space-y-1">
-                          <li>• 고등학생 수준의 안전한 실험</li>
-                          <li>• 위험 화학물질 제외</li>
-                          <li>• 안전 주의사항 필수 안내</li>
-                          <li>• 성인 지도 권장</li>
-                        </ul>
-                      </div>
-                      
-                      <div className="bg-white rounded-lg p-4">
-                        <div className="flex items-center mb-2">
-                          <MessageCircle className="w-5 h-5 text-green-600 mr-2" />
-                          <h4 className="font-semibold text-slate-800">건전한 소통</h4>
-                        </div>
-                        <ul className="text-sm text-slate-600 space-y-1">
-                          <li>• AI와의 1:1 대화만 가능</li>
-                          <li>• 다른 사용자와 직접 소통 없음</li>
-                          <li>• 교육 목적 대화만 지원</li>
-                          <li>• 부적절한 대화 차단</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'guidance':
-        return (
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl p-8 border border-purple-200">
-              <div className="flex items-start space-x-6">
-                <div className="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Users className="w-8 h-8 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-slate-800 mb-4">학생 지도 가이드</h3>
-                  <p className="text-slate-700 leading-relaxed mb-6">
-                    학생이 과학연구설계 AI를 효과적으로 활용할 수 있도록 도와주세요.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
-                  <div className="flex items-center mb-4">
-                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
-                      <span className="text-white font-bold text-sm">1</span>
-                    </div>
-                    <h4 className="text-lg font-bold text-slate-800">처음 시작할 때</h4>
-                  </div>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• 학생과 함께 서비스를 둘러보세요</li>
-                    <li>• 관심 있는 과학 분야에 대해 대화해보세요</li>
-                    <li>• 6분 무료체험으로 먼저 경험해보세요</li>
-                    <li>• AI 도구의 역할과 한계를 설명해주세요</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
-                  <div className="flex items-center mb-4">
-                    <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
-                      <span className="text-white font-bold text-sm">2</span>
-                    </div>
-                    <h4 className="text-lg font-bold text-slate-800">연구 과정에서</h4>
-                  </div>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• 정기적으로 연구 진행상황을 확인하세요</li>
-                    <li>• 실험할 때는 반드시 지도교사나 학부모와 함께 하세요</li>
-                    <li>• 안전 수칙을 미리 점검하고 시작하세요</li>
-                    <li>• 궁금한 점은 함께 찾아보세요</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
-                  <div className="flex items-center mb-4">
-                    <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center mr-3">
-                      <span className="text-white font-bold text-sm">3</span>
-                    </div>
-                    <h4 className="text-lg font-bold text-slate-800">마무리할 때</h4>
-                  </div>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• 연구 과정을 돌아보며 대화하세요</li>
-                    <li>• 어려웠던 점과 배운 점을 나누세요</li>
-                    <li>• 다음 연구 계획을 함께 세워보세요</li>
-                    <li>• 성취를 축하하고 격려해주세요</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className="bg-amber-50 rounded-2xl p-6 border border-amber-200">
-                  <div className="flex items-center mb-4">
-                    <Lightbulb className="w-8 h-8 text-amber-600 mr-3" />
-                    <h4 className="text-lg font-bold text-slate-800">효과적인 질문 유도법</h4>
-                  </div>
-                  <div className="space-y-3 text-sm text-slate-700">
-                    <div>
-                      <p className="font-semibold mb-1">🔍 구체적으로 질문하도록 도와주세요</p>
-                      <p>"환경오염이 궁금해" → "미세먼지가 식물 성장에 미치는 영향이 궁금해"</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold mb-1">🤔 스스로 생각해보게 격려하세요</p>
-                      <p>"AI가 이런 실험을 추천했는데, 왜 이 방법이 좋을까?"</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold mb-1">📚 추가 자료 찾기를 권하세요</p>
-                      <p>"AI 답변 외에 다른 자료도 찾아보면 어떨까?"</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-blue-50 rounded-2xl p-6 border border-blue-200">
-                  <div className="flex items-center mb-4">
-                    <Target className="w-8 h-8 text-blue-600 mr-3" />
-                    <h4 className="text-lg font-bold text-slate-800">연구윤리 교육</h4>
-                  </div>
-                  <div className="space-y-3 text-sm text-slate-700">
-                    <div>
-                      <p className="font-semibold mb-1">📝 출처 표기의 중요성</p>
-                      <p>"AI의 도움을 받았다면 보고서에 명시해야 해"</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold mb-1">🔬 정직한 실험 결과</p>
-                      <p>"예상과 다른 결과가 나와도 조작하면 안 돼"</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold mb-1">🤝 타인의 연구 존중</p>
-                      <p>"다른 사람의 아이디어를 그대로 쓰면 표절이야"</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-green-50 rounded-2xl p-6 border border-green-200">
-                  <div className="flex items-center mb-4">
-                    <Heart className="w-8 h-8 text-green-600 mr-3" />
-                    <h4 className="text-lg font-bold text-slate-800">동기부여 방법</h4>
-                  </div>
-                  <ul className="space-y-2 text-sm text-slate-700">
-                    <li>• 작은 성취도 크게 칭찬해주세요</li>
-                    <li>• 과정을 중요하게 여기는 모습을 보여주세요</li>
-                    <li>• 실패도 배움의 기회임을 알려주세요</li>
-                    <li>• 과학자의 삶과 연구를 소개해주세요</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'benefits':
-        return (
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl p-8 border border-orange-200">
-              <div className="flex items-start space-x-6">
-                <div className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Star className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-800 mb-4">기대할 수 있는 교육 효과</h3>
-                  <p className="text-slate-700 leading-relaxed">
-                    과학연구설계 AI를 통해 자녀가 얻을 수 있는 다양한 학습 효과를 소개합니다.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                      <BookOpen className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h4 className="text-xl font-bold text-slate-800">학습능력 향상</h4>
-                  </div>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• <strong>논리적 사고력</strong>: 체계적인 연구 과정 학습</li>
-                    <li>• <strong>문제해결능력</strong>: 단계별 접근법 습득</li>
-                    <li>• <strong>창의적 사고</strong>: 새로운 관점에서 접근</li>
-                    <li>• <strong>정보활용능력</strong>: 데이터 분석 및 해석</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
-                      <Target className="w-6 h-6 text-green-600" />
-                    </div>
-                    <h4 className="text-xl font-bold text-slate-800">진로 탐색</h4>
-                  </div>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• <strong>과학 분야 이해</strong>: 다양한 전공 영역 체험</li>
-                    <li>• <strong>연구자 역할</strong>: 실제 연구 과정 경험</li>
-                    <li>• <strong>적성 발견</strong>: 흥미와 재능 영역 탐색</li>
-                    <li>• <strong>미래 설계</strong>: 구체적인 진로 계획</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
-                      <Award className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <h4 className="text-xl font-bold text-slate-800">대회 준비</h4>
-                  </div>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• <strong>과학전람회</strong>: 체계적인 연구보고서</li>
-                    <li>• <strong>R&E 활동</strong>: 심화 연구 프로젝트</li>
-                    <li>• <strong>국제대회</strong>: ISEF 등 글로벌 경진대회</li>
-                    <li>• <strong>입시 준비</strong>: 생활기록부 우수 활동</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-6 border border-blue-200">
-                  <h4 className="text-xl font-bold text-slate-800 mb-4">📊 실제 성과 데이터</h4>
-                  <div className="space-y-4">
-                    <div className="bg-white rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-slate-600">연구시간 단축</span>
-                        <span className="text-2xl font-bold text-blue-600">70%</span>
-                      </div>
-                      <div className="w-full bg-slate-200 rounded-full h-2">
-                        <div className="bg-blue-600 h-2 rounded-full" style={{width: '70%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-slate-600">과학 흥미도 증가</span>
-                        <span className="text-2xl font-bold text-green-600">85%</span>
-                      </div>
-                      <div className="w-full bg-slate-200 rounded-full h-2">
-                        <div className="bg-green-600 h-2 rounded-full" style={{width: '85%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-slate-600">학부모 만족도</span>
-                        <span className="text-2xl font-bold text-purple-600">92%</span>
-                      </div>
-                      <div className="w-full bg-slate-200 rounded-full h-2">
-                        <div className="bg-purple-600 h-2 rounded-full" style={{width: '92%'}}></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-6 border border-green-200">
-                  <h4 className="text-xl font-bold text-slate-800 mb-4">💝 교사/학부모 후기</h4>
-                  <div className="space-y-4">
-                    <div className="bg-white rounded-lg p-4">
-                      <p className="text-sm text-slate-700 italic mb-2">
-                        "R&E 수업에서 학생들이 AI 도움으로 연구주제를 찾고 체계적으로 진행하는 모습이 인상적이었어요. 
-                        이제 학생들이 더 창의적인 연구에 집중할 수 있게 되었습니다."
-                      </p>
-                      <span className="text-xs text-slate-500">- 고등학교 생물 교사</span>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-4">
-                      <p className="text-sm text-slate-700 italic mb-2">
-                        "평소 과학에 관심이 없던 아이가 AI 도움으로 미생물 연구를 시작했어요. 
-                        이제 매일 실험하는 게 즐겁다고 하네요!"
-                      </p>
-                      <span className="text-xs text-slate-500">- 고등학교 1학년 어머니</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mr-4">
-                      <TrendingUp className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <h4 className="text-xl font-bold text-slate-800">장기적 효과</h4>
-                  </div>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• <strong>자기주도학습</strong>: 스스로 탐구하는 습관</li>
-                    <li>• <strong>과학적 소양</strong>: 평생 활용할 사고방식</li>
-                    <li>• <strong>협업 능력</strong>: 팀 프로젝트 참여 역량</li>
-                    <li>• <strong>발표 능력</strong>: 논리적 의사소통 기술</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'precautions':
-        return (
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-3xl p-8 border border-red-200">
-              <div className="flex items-start space-x-6">
-                <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <AlertTriangle className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-800 mb-4">주의사항 및 제한사항</h3>
-                  <p className="text-slate-700 leading-relaxed">
-                    안전하고 효과적인 학습을 위해 반드시 알아두셔야 할 중요한 사항들입니다.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className="bg-red-50 rounded-2xl p-6 border border-red-200">
-                  <div className="flex items-center mb-4">
-                    <AlertTriangle className="w-8 h-8 text-red-600 mr-3" />
-                    <h4 className="text-xl font-bold text-slate-800">실험 안전 주의사항</h4>
-                  </div>
-                  <div className="space-y-3 text-slate-700">
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-red-800 mb-1">🔬 성인 지도 필수</p>
-                      <p className="text-sm">모든 실험은 반드시 지도교사나 학부모와 함께 진행해야 합니다.</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-red-800 mb-1">⚠️ 안전장비 착용</p>
-                      <p className="text-sm">보안경, 장갑 등 필요한 안전장비를 반드시 착용하세요.</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-red-800 mb-1">🏠 안전한 장소</p>
-                      <p className="text-sm">통풍이 잘 되고 안전한 장소에서만 실험하세요.</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-red-800 mb-1">📞 응급상황 대비</p>
-                      <p className="text-sm">응급처치법을 미리 숙지하고 비상연락망을 준비하세요.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-amber-50 rounded-2xl p-6 border border-amber-200">
-                  <div className="flex items-center mb-4">
-                    <Eye className="w-8 h-8 text-amber-600 mr-3" />
-                    <h4 className="text-xl font-bold text-slate-800">사용시간 관리</h4>
-                  </div>
-                  <div className="space-y-3 text-slate-700">
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-amber-800 mb-1">⏰ 적절한 이용시간</p>
-                      <p className="text-sm">하루 1-2시간 내외로 사용을 권장합니다.</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-amber-800 mb-1">🔄 정기적 휴식</p>
-                      <p className="text-sm">30분마다 10분씩 휴식을 취하도록 해주세요.</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-amber-800 mb-1">👀 시력 보호</p>
-                      <p className="text-sm">화면과 적절한 거리를 유지하고 눈 운동을 하세요.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className="bg-blue-50 rounded-2xl p-6 border border-blue-200">
-                  <div className="flex items-center mb-4">
-                    <BookOpen className="w-8 h-8 text-blue-600 mr-3" />
-                    <h4 className="text-xl font-bold text-slate-800">AI 도구 한계 이해</h4>
-                  </div>
-                  <div className="space-y-3 text-slate-700">
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-blue-800 mb-1">🤖 100% 정확하지 않음</p>
-                      <p className="text-sm">AI 답변은 참고용이며, 추가 검증이 필요할 수 있습니다.</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-blue-800 mb-1">📚 보조 도구 역할</p>
-                      <p className="text-sm">AI는 도우미일 뿐, 최종 판단은 학생이 해야 합니다.</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-blue-800 mb-1">📖 다양한 자료 활용</p>
-                      <p className="text-sm">AI 외에도 책, 논문 등 다양한 자료를 참고하세요.</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-blue-800 mb-1">✍️ 출처 표기 필수</p>
-                      <p className="text-sm">AI 도움을 받은 부분은 보고서에 명시해야 합니다.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-purple-50 rounded-2xl p-6 border border-purple-200">
-                  <div className="flex items-center mb-4">
-                    <Shield className="w-8 h-8 text-purple-600 mr-3" />
-                    <h4 className="text-xl font-bold text-slate-800">개인정보 보호 교육</h4>
-                  </div>
-                  <div className="space-y-3 text-slate-700">
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-purple-800 mb-1">🔒 개인정보 입력 금지</p>
-                      <p className="text-sm">이름, 전화번호, 주소 등 개인정보를 입력하지 마세요.</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-purple-800 mb-1">📸 사진 업로드 주의</p>
-                      <p className="text-sm">얼굴이나 개인 식별이 가능한 사진은 업로드하지 마세요.</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3">
-                      <p className="font-semibold text-amber-800 mb-1">💳 결제정보 관리</p>
-                      <p className="text-sm">이용권 구매는 반드시 지도교사나 학부모 동의하에 진행하세요.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-green-50 rounded-2xl p-6 border border-green-200">
-                  <div className="flex items-center mb-4">
-                    <CheckCircle className="w-8 h-8 text-green-600 mr-3" />
-                    <h4 className="text-xl font-bold text-slate-800">올바른 사용법</h4>
-                  </div>
-                  <ul className="space-y-2 text-slate-700">
-                    <li>• 연구 목적으로만 사용하기</li>
-                    <li>• 정중하고 예의바른 질문하기</li>
-                    <li>• 부적절한 내용 입력 금지</li>
-                    <li>• 문제 발생시 즉시 지도교사나 학부모님께 알리기</li>
-                    <li>• 다른 사람과 계정 공유하지 않기</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-200/50 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <a href="index.html" className="flex items-center hover:opacity-80 transition-opacity">
-                <ArrowLeft className="w-5 h-5 text-slate-600 mr-3" />
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg">
-                  <Beaker className="w-6 h-6 text-white" />
-                </div>
-                <div className="ml-3">
-                  <h1 className="text-xl font-bold text-slate-800">과학연구설계 AI</h1>
-                  <p className="text-xs text-slate-500">지도교사/학부모 가이드</p>
-                </div>
-              </a>
-            </div>
-            <div className="flex items-center space-x-4">
-              <a href="contact.html" className="text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-slate-100">
-                문의하기
-              </a>
-              <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
-                <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg">
-                  바로 시작하기
+    <!-- Tab Navigation -->
+    <section class="py-8 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="tab-button active flex items-center px-6 py-3 rounded-xl font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="overview">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    서비스 소개
                 </button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
-              <Heart className="w-10 h-10 text-white" />
-            </div>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-slate-800">지도교사/학부모 가이드</span>
-            <br />
-            <span className="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
-              Teacher & Parents Guide 👨‍🏫👨‍👩‍👧‍👦
-            </span>
-          </h1>
-          <p className="text-xl text-slate-600 mb-8">
-            학생의 과학연구 활동을 효과적으로 지도하는 방법을 안내해드립니다
-          </p>
-          <div className="bg-pink-50 rounded-2xl p-6 border border-pink-200">
-            <p className="text-pink-800 leading-relaxed">
-              과학연구설계 AI는 <strong>교육용 도구</strong>입니다. 
-              학생이 안전하고 창의적으로 과학을 탐구할 수 있도록 
-              <strong>선생님과 학부모님의 관심과 지도</strong>가 함께할 때 더욱 효과적입니다.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Tab Navigation */}
-      <section className="py-8 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {tabs.map((tab) => {
-              const IconComponent = tab.icon;
-              const isActive = activeTab === tab.id;
-              
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center px-6 py-3 rounded-xl font-semibold transition-all ${
-                    isActive 
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg' 
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
-                  <IconComponent className="w-5 h-5 mr-2" />
-                  {tab.label}
+                <button class="tab-button flex items-center px-6 py-3 rounded-xl font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="safety">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                    안전성 안내
                 </button>
-              );
-            })}
-          </div>
-          
-          <div className="min-h-[600px]">
-            <TabContent tabId={activeTab} />
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-600 to-indigo-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Mail className="w-16 h-16 text-white mx-auto mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            궁금한 점이 있으시면<br />
-            언제든지 연락주세요! 📞
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-            학생 교육과 관련된 모든 문의를 환영합니다.<br />
-            <strong>선생님과 학부모님의 의견은 서비스 개선에 큰 도움이 됩니다.</strong>
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="mailto:littlescienceai@gmail.com?subject=[교사/학부모가이드] 문의사항">
-              <button className="bg-white text-blue-600 px-10 py-4 rounded-2xl text-lg font-bold hover:bg-blue-50 transition-all shadow-xl flex items-center">
-                <Mail className="w-6 h-6 mr-3" />
-                교사/학부모 전용 문의
-              </button>
-            </a>
-            <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
-              <button className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white px-10 py-4 rounded-2xl text-lg font-bold hover:bg-white/20 transition-all flex items-center">
-                <Beaker className="w-6 h-6 mr-3" />
-                학생과 함께 체험
-              </button>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 text-slate-300 py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mr-4">
-              <Beaker className="w-7 h-7 text-white" />
+                <button class="tab-button flex items-center px-6 py-3 rounded-xl font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="guidance">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    학생 지도법
+                </button>
+                <button class="tab-button flex items-center px-6 py-3 rounded-xl font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="benefits">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                    </svg>
+                    교육 효과
+                </button>
+                <button class="tab-button flex items-center px-6 py-3 rounded-xl font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="precautions">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    주의사항
+                </button>
             </div>
-            <div>
-              <h3 className="text-xl font-bold text-white">과학연구설계 AI</h3>
-              <p className="text-sm text-slate-400">학생의 꿈을 함께 키워갑니다</p>
-            </div>
-          </div>
-          <div className="flex justify-center space-x-8 text-sm mb-6">
-            <a href="index.html" className="hover:text-white transition-colors">홈으로</a>
-            <a href="help.html" className="hover:text-white transition-colors">사용방법</a>
-            <a href="faq.html" className="hover:text-white transition-colors">자주묻는질문</a>
-            <a href="contact.html" className="hover:text-white transition-colors">문의하기</a>
-          </div>
-          <div className="border-t border-slate-800 pt-6">
-            <p className="text-sm text-slate-400 mb-2">
-              교사/학부모 전용 문의: littlescienceai@gmail.com
-            </p>
-            <p className="text-sm text-slate-400">
-              © 2025 과학연구설계 AI. 모든 권리 보유. | 안전한 교육환경 제공
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-};
+            
+            <!-- Tab Contents -->
+            <div class="min-h-[600px]">
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-content active">
+                    <div class="space-y-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-8 border border-blue-200">
+                            <div class="flex items-start space-x-6">
+                                <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 7.172V5L8 4z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-slate-800 mb-4">과학연구설계 AI란?</h3>
+                                    <p class="text-slate-700 leading-relaxed mb-4">
+                                        고등학생들의 과학연구활동을 돕는 AI 교육 도구입니다. 
+                                        ISEF, 전국과학전람회, R&E 등 20,000개 이상의 수상작 데이터를 바탕으로 
+                                        연구주제 추천부터 실험설계, 보고서 작성까지 단계별로 지원합니다.
+                                    </p>
+                                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                        <div class="bg-white rounded-lg p-4">
+                                            <h4 class="font-semibold text-blue-800 mb-2">💡 주요 기능</h4>
+                                            <ul class="space-y-1 text-slate-600">
+                                                <li>• 연구주제 추천 및 가이드</li>
+                                                <li>• 실험설계 방법 안내</li>
+                                                <li>• 보고서 작성 지원</li>
+                                                <li>• 24시간 질의응답</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-white rounded-lg p-4">
+                                            <h4 class="font-semibold text-blue-800 mb-2">🎯 교육 목표</h4>
+                                            <ul class="space-y-1 text-slate-600">
+                                                <li>• 과학적 사고력 향상</li>
+                                                <li>• 연구방법론 학습</li>
+                                                <li>• 문제해결능력 개발</li>
+                                                <li>• 창의적 연구역량 강화</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-export default ParentsPage;
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                                <svg class="w-10 h-10 text-green-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <h4 class="text-lg font-bold text-slate-800 mb-3">학습시간 단축</h4>
+                                <p class="text-slate-600 text-sm">
+                                    평균 70% 연구시간 단축으로 더 깊이 있는 학습에 집중할 수 있어요
+                                </p>
+                            </div>
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                                <svg class="w-10 h-10 text-purple-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                </svg>
+                                <h4 class="text-lg font-bold text-slate-800 mb-3">실제 수상사례</h4>
+                                <p class="text-slate-600 text-sm">
+                                    AI 도움으로 체계적인 연구를 진행해 실제 대회에서 수상한 학생들이 많아요
+                                </p>
+                            </div>
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                                <svg class="w-10 h-10 text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                </svg>
+                                <h4 class="text-lg font-bold text-slate-800 mb-3">성취감 향상</h4>
+                                <p class="text-slate-600 text-sm">
+                                    단계별 성공경험으로 과학에 대한 흥미와 자신감이 크게 향상돼요
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety Tab -->
+                <div id="safety" class="tab-content">
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-3xl p-8 border border-green-200">
+                        <div class="flex items-start space-x-6">
+                            <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-4">안전한 서비스 환경</h3>
+                                <p class="text-slate-700 leading-relaxed mb-6">
+                                    학생이 안전하게 학습할 수 있도록 다양한 보호 조치를 마련했습니다.
+                                </p>
+                                
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="space-y-4">
+                                        <div class="bg-white rounded-lg p-4">
+                                            <div class="flex items-center mb-2">
+                                                <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                                </svg>
+                                                <h4 class="font-semibold text-slate-800">개인정보 보호</h4>
+                                            </div>
+                                            <ul class="text-sm text-slate-600 space-y-1">
+                                                <li>• 최소한의 정보만 수집</li>
+                                                <li>• 암호화된 데이터 저장</li>
+                                                <li>• 제3자 제공 금지</li>
+                                                <li>• 법정대리인 동의 시스템</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="bg-white rounded-lg p-4">
+                                            <div class="flex items-center mb-2">
+                                                <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                                </svg>
+                                                <h4 class="font-semibold text-slate-800">콘텐츠 필터링</h4>
+                                            </div>
+                                            <ul class="text-sm text-slate-600 space-y-1">
+                                                <li>• 교육적 내용만 제공</li>
+                                                <li>• 부적절한 내용 차단</li>
+                                                <li>• 안전한 실험만 추천</li>
+                                                <li>• 실시간 모니터링</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="space-y-4">
+                                        <div class="bg-white rounded-lg p-4">
+                                            <div class="flex items-center mb-2">
+                                                <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <h4 class="font-semibold text-slate-800">실험 안전성</h4>
+                                            </div>
+                                            <ul class="text-sm text-slate-600 space-y-1">
+                                                <li>• 고등학생 수준의 안전한 실험</li>
+                                                <li>• 위험 화학물질 제외</li>
+                                                <li>• 안전 주의사항 필수 안내</li>
+                                                <li>• 성인 지도 권장</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="bg-white rounded-lg p-4">
+                                            <div class="flex items-center mb-2">
+                                                <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                                </svg>
+                                                <h4 class="font-semibold text-slate-800">건전한 소통</h4>
+                                            </div>
+                                            <ul class="text-sm text-slate-600 space-y-1">
+                                                <li>• AI와의 1:1 대화만 가능</li>
+                                                <li>• 다른 사용자와 직접 소통 없음</li>
+                                                <li>• 교육 목적 대화만 지원</li>
+                                                <li>• 부적절한 대화 차단</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guidance Tab -->
+                <div id="guidance" class="tab-content">
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl p-8 border border-purple-200 mb-8">
+                        <div class="flex items-start space-x-6">
+                            <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-slate-800 mb-4">학생 지도 가이드</h3>
+                                <p class="text-slate-700 leading-relaxed mb-6">
+                                    학생이 과학연구설계 AI를 효과적으로 활용할 수 있도록 도와주세요.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-white font-bold text-sm">1</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-slate-800">처음 시작할 때</h4>
+                                </div>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li>• 학생과 함께 서비스를 둘러보세요</li>
+                                    <li>• 관심 있는 과학 분야에 대해 대화해보세요</li>
+                                    <li>• 6분 무료체험으로 먼저 경험해보세요</li>
+                                    <li>• AI 도구의 역할과 한계를 설명해주세요</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-white font-bold text-sm">2</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-slate-800">연구 과정에서</h4>
+                                </div>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li>• 정기적으로 연구 진행상황을 확인하세요</li>
+                                    <li>• 실험할 때는 반드시 지도교사나 학부모와 함께 하세요</li>
+                                    <li>• 안전 수칙을 미리 점검하고 시작하세요</li>
+                                    <li>• 궁금한 점은 함께 찾아보세요</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-white font-bold text-sm">3</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-slate-800">마무리할 때</h4>
+                                </div>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li>• 연구 과정을 돌아보며 대화하세요</li>
+                                    <li>• 어려웠던 점과 배운 점을 나누세요</li>
+                                    <li>• 다음 연구 계획을 함께 세워보세요</li>
+                                    <li>• 성취를 축하하고 격려해주세요</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="bg-amber-50 rounded-2xl p-6 border border-amber-200">
+                                <div class="flex items-center mb-4">
+                                    <svg class="w-8 h-8 text-amber-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                    </svg>
+                                    <h4 class="text-lg font-bold text-slate-800">효과적인 질문 유도법</h4>
+                                </div>
+                                <div class="space-y-3 text-sm text-slate-700">
+                                    <div>
+                                        <p class="font-semibold mb-1">🔍 구체적으로 질문하도록 도와주세요</p>
+                                        <p>"환경오염이 궁금해" → "미세먼지가 식물 성장에 미치는 영향이 궁금해"</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold mb-1">🤔 스스로 생각해보게 격려하세요</p>
+                                        <p>"AI가 이런 실험을 추천했는데, 왜 이 방법이 좋을까?"</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold mb-1">📚 추가 자료 찾기를 권하세요</p>
+                                        <p>"AI 답변 외에 다른 자료도 찾아보면 어떨까?"</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50 rounded-2xl p-6 border border-blue-200">
+                                <div class="flex items-center mb-4">
+                                    <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <h4 class="text-lg font-bold text-slate-800">연구윤리 교육</h4>
+                                </div>
+                                <div class="space-y-3 text-sm text-slate-700">
+                                    <div>
+                                        <p class="font-semibold mb-1">📝 출처 표기의 중요성</p>
+                                        <p>"AI의 도움을 받았다면 보고서에 명시해야 해"</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold mb-1">🔬 정직한 실험 결과</p>
+                                        <p>"예상과 다른 결과가 나와도 조작하면 안 돼"</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold mb-1">🤝 타인의 연구 존중</p>
+                                        <p>"다른 사람의 아이디어를 그대로 쓰면 표절이야"</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-green-50 rounded-2xl p-6 border border-green-200">
+                                <div class="flex items-center mb-4">
+                                    <svg class="w-8 h-8 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                    </svg>
+                                    <h4 class="text-lg font-bold text-slate-800">동기부여 방법</h4>
+                                </div>
+                                <ul class="space-y-2 text-sm text-slate-700">
+                                    <li>• 작은 성취도 크게 칭찬해주세요</li>
+                                    <li>• 과정을 중요하게 여기는 모습을 보여주세요</li>
+                                    <li>• 실패도 배움의 기회임을 알려주세요</li>
+                                    <li>• 과학자의 삶과 연구를 소개해주세요</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Tab -->
+                <div id="benefits" class="tab-content">
+                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl p-8 border border-orange-200 mb-8">
+                        <div class="flex items-start space-x-6">
+                            <div class="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-4">기대할 수 있는 교육 효과</h3>
+                                <p class="text-slate-700 leading-relaxed">
+                                    과학연구설계 AI를 통해 학생이 얻을 수 있는 다양한 학습 효과를 소개합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-slate-800">학습능력 향상</h4>
+                                </div>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li>• <strong>논리적 사고력</strong>: 체계적인 연구 과정 학습</li>
+                                    <li>• <strong>문제해결능력</strong>: 단계별 접근법 습득</li>
+                                    <li>• <strong>창의적 사고</strong>: 새로운 관점에서 접근</li>
+                                    <li>• <strong>정보활용능력</strong>: 데이터 분석 및 해석</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-slate-800">진로 탐색</h4>
+                                </div>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li>• <strong>과학 분야 이해</strong>: 다양한 전공 영역 체험</li>
+                                    <li>• <strong>연구자 역할</strong>: 실제 연구 과정 경험</li>
+                                    <li>• <strong>적성 발견</strong>: 흥미와 재능 영역 탐색</li>
+                                    <li>• <strong>미래 설계</strong>: 구체적인 진로 계획</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-slate-800">대회 준비</h4>
+                                </div>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li>• <strong>과학전람회</strong>: 체계적인 연구보고서</li>
+                                    <li>• <strong>R&E 활동</strong>: 심화 연구 프로젝트</li>
+                                    <li>• <strong>국제대회</strong>: ISEF 등 글로벌 경진대회</li>
+                                    <li>• <strong>입시 준비</strong>: 생활기록부 우수 활동</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-6 border border-blue-200">
+                                <h4 class="text-xl font-bold text-slate-800 mb-4">📊 실제 성과 데이터</h4>
+                                <div class="space-y-4">
+                                    <div class="bg-white rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="text-sm text-slate-600">연구시간 단축</span>
+                                            <span class="text-2xl font-bold text-blue-600">70%</span>
+                                        </div>
+                                        <div class="w-full bg-slate-200 rounded-full h-2">
+                                            <div class="bg-blue-600 h-2 rounded-full" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="text-sm text-slate-600">과학 흥미도 증가</span>
+                                            <span class="text-2xl font-bold text-green-600">85%</span>
+                                        </div>
+                                        <div class="w-full bg-slate-200 rounded-full h-2">
+                                            <div class="bg-green-600 h-2 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="text-sm text-slate-600">교사/학부모 만족도</span>
+                                            <span class="text-2xl font-bold text-purple-600">92%</span>
+                                        </div>
+                                        <div class="w-full bg-slate-200 rounded-full h-2">
+                                            <div class="bg-purple-600 h-2 rounded-full" style="width: 92%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-6 border border-green-200">
+                                <h4 class="text-xl font-bold text-slate-800 mb-4">💝 교사/학부모 후기</h4>
+                                <div class="space-y-4">
+                                    <div class="bg-white rounded-lg p-4">
+                                        <p class="text-sm text-slate-700 italic mb-2">
+                                            "R&E 수업에서 학생들이 AI 도움으로 연구주제를 찾고 체계적으로 진행하는 모습이 인상적이었어요. 
+                                            이제 학생들이 더 창의적인 연구에 집중할 수 있게 되었습니다."
+                                        </p>
+                                        <span class="text-xs text-slate-500">- 고등학교 생물 교사</span>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-4">
+                                        <p class="text-sm text-slate-700 italic mb-2">
+                                            "평소 과학에 관심이 없던 아이가 AI 도움으로 미생물 연구를 시작했어요. 
+                                            이제 매일 실험하는 게 즐겁다고 하네요!"
+                                        </p>
+                                        <span class="text-xs text-slate-500">- 고등학교 1학년 어머니</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Precautions Tab -->
+                <div id="precautions" class="tab-content">
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-3xl p-8 border border-red-200 mb-8">
+                        <div class="flex items-start space-x-6">
+                            <div class="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-4">주의사항 및 제한사항</h3>
+                                <p class="text-slate-700 leading-relaxed">
+                                    안전하고 효과적인 학습을 위해 반드시 알아두셔야 할 중요한 사항들입니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="bg-red-50 rounded-2xl p-6 border border-red-200">
+                                <div class="flex items-center mb-4">
+                                    <svg class="w-8 h-8 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                    </svg>
+                                    <h4 class="text-xl font-bold text-slate-800">실험 안전 주의사항</h4>
+                                </div>
+                                <div class="space-y-3 text-slate-700">
+                                    <div class="bg-white rounded-lg p-3">
+                                        <p class="font-semibold text-red-800 mb-1">🔬 성인 지도 필수</p>
+                                        <p class="text-sm">모든 실험은 반드시 지도교사나 학부모와 함께 진행해야 합니다.</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-3">
+                                        <p class="font-semibold text-red-800 mb-1">⚠️ 안전장비 착용</p>
+                                        <p class="text-sm">보안경, 장갑 등 필요한 안전장비를 반드시 착용하세요.</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-3">
+                                        <p class="font-semibold text-red-800 mb-1">🏠 안전한 장소</p>
+                                        <p class="text-sm">통풍이 잘 되고 안전한 장소에서만 실험하세요.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50 rounded-2xl p-6 border border-amber-200">
+                                <div class="flex items-center mb-4">
+                                    <svg class="w-8 h-8 text-amber-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
+                                    <h4 class="text-xl font-bold text-slate-800">사용시간 관리</h4>
+                                </div>
+                                <div class="space-y-3 text-slate-700">
+                                    <div class="bg-white rounded-lg p-3">
+                                        <p class="font-semibold text-amber-800 mb-1">⏰ 적절한 이용시간</p>
+                                        <p class="text-sm">하루 1-2시간 내외로 사용을 권장합니다.</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-3">
+                                        <p class="font-semibold text-amber-800 mb-1">🔄 정기적 휴식</p>
+                                        <p class="text-sm">30분마다 10분씩 휴식을 취하도록 해주세요.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="bg-blue-50 rounded-2xl p-6 border border-blue-200">
+                                <div class="flex items-center mb-4">
+                                    <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                    </svg>
+                                    <h4 class="text-xl font-bold text-slate-800">AI 도구 한계 이해</h4>
+                                </div>
+                                <div class="space-y-3 text-slate-700">
+                                    <div class="bg-white rounded-lg p-3">
+                                        <p class="font-semibold text-blue-800 mb-1">🤖 100% 정확하지 않음</p>
+                                        <p class="text-sm">AI 답변은 참고용이며, 추가 검증이 필요할 수 있습니다.</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-3">
+                                        <p class="font-semibold text-blue-800 mb-1">📚 보조 도구 역할</p>
+                                        <p class="text-sm">AI는 도우미일 뿐, 최종 판단은 학생이 해야 합니다.</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-3">
+                                        <p class="font-semibold text-blue-800 mb-1">✍️ 출처 표기 필수</p>
+                                        <p class="text-sm">AI 도움을 받은 부분은 보고서에 명시해야 합니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-purple-50 rounded-2xl p-6 border border-purple-200">
+                                <div class="flex items-center mb-4">
+                                    <svg class="w-8 h-8 text-purple-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                    </svg>
+                                    <h4 class="text-xl font-bold text-slate-800">개인정보 보호 교육</h4>
+                                </div>
+                                <div class="space-y-3 text-slate-700">
+                                    <div class="bg-white rounded-lg p-3">
+                                        <p class="font-semibold text-purple-800 mb-1">🔒 개인정보 입력 금지</p>
+                                        <p class="text-sm">이름, 전화번호, 주소 등 개인정보를 입력하지 마세요.</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-3">
+                                        <p class="font-semibold text-amber-800 mb-1">💳 결제정보 관리</p>
+                                        <p class="text-sm">이용권 구매는 반드시 지도교사나 학부모 동의하에 진행하세요.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-green-50 rounded-2xl p-6 border border-green-200">
+                                <div class="flex items-center mb-4">
+                                    <svg class="w-8 h-8 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    <h4 class="text-xl font-bold text-slate-800">올바른 사용법</h4>
+                                </div>
+                                <ul class="space-y-2 text-slate-700">
+                                    <li>• 연구 목적으로만 사용하기</li>
+                                    <li>• 정중하고 예의바른 질문하기</li>
+                                    <li>• 부적절한 내용 입력 금지</li>
+                                    <li>• 문제 발생시 즉시 지도교사나 학부모님께 알리기</li>
+                                    <li>• 다른 사람과 계정 공유하지 않기</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 bg-gradient-to-br from-blue-600 to-indigo-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <svg class="w-16 h-16 text-white mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                궁금한 점이 있으시면<br>
+                언제든지 연락주세요! 📞
+            </h2>
+            <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+                학생 교육과 관련된 모든 문의를 환영합니다.<br>
+                <strong>선생님과 학부모님의 의견은 서비스 개선에 큰 도움이 됩니다.</strong>
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="mailto:littlescienceai@gmail.com?subject=[교사/학부모가이드] 문의사항">
+                    <button class="bg-white text-blue-600 px-10 py-4 rounded-2xl text-lg font-bold hover:bg-blue-50 transition-all shadow-xl flex items-center">
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        교사/학부모 전용 문의
+                    </button>
+                </a>
+                <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+                    <button class="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white px-10 py-4 rounded-2xl text-lg font-bold hover:bg-white/20 transition-all flex items-center">
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 7.172V5L8 4z"/>
+                        </svg>
+                        학생과 함께 체험
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center mb-6">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mr-4">
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 7.172V5L8 4z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">과학연구설계 AI</h3>
+                    <p class="text-sm text-slate-400">학생의 꿈을 함께 키워갑니다</p>
+                </div>
+            </div>
+            <div class="flex justify-center space-x-8 text-sm mb-6">
+                <a href="index.html" class="hover:text-white transition-colors">홈으로</a>
+                <a href="help.html" class="hover:text-white transition-colors">사용방법</a>
+                <a href="faq.html" class="hover:text-white transition-colors">자주묻는질문</a>
+                <a href="contact.html" class="hover:text-white transition-colors">문의하기</a>
+            </div>
+            <div class="border-t border-slate-800 pt-6">
+                <p class="text-sm text-slate-400 mb-2">
+                    교사/학부모 전용 문의: littlescienceai@gmail.com
+                </p>
+                <p class="text-sm text-slate-400">
+                    © 2025 과학연구설계 AI. 모든 권리 보유. | 안전한 교육환경 제공
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 탭 기능 구현
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                
+                // 모든 탭 비활성화
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // 클릭된 탭 활성화
+                button.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
