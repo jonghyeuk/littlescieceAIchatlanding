@@ -11,7 +11,7 @@ import {
   Loader
 } from 'lucide-react';
 
-const PricingPage = () => {
+const PricingPage = ({ onBackToLanding }) => {
   const [selectedLicense, setSelectedLicense] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(0);
   const [buyerEmail, setBuyerEmail] = useState('');
