@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { 
   Beaker, 
   Clock, 
-  Users, 
   Star, 
   GraduationCap,
   Mail,
@@ -23,40 +22,44 @@ const PricingPage = () => {
     {
       id: '7일 이용권',
       title: '7일 이용권',
-      price: 9900,
+      price: 7900, // 🔥 11900원 -> 7900원
+      originalPrice: 11900, // 🔥 원가 표시
       duration: '7일',
       icon: Clock,
-      description: '일주일간 빠른 연구 탐색',
+      description: '일주일간 과학논문 주제 탐색 (기능 동일)',
       color: 'blue',
       popular: false
     },
     {
       id: '15일 이용권', 
-      title: '15일 이용권',
-      price: 14900,
+      title: '15일 베이직',
+      price: 14900, // 🔥 19900원 -> 14900원 (동일)
+      originalPrice: 19900, // 🔥 원가 표시
       duration: '15일',
       icon: Star,
-      description: '2주간 집중 연구 탐색',
+      description: '2주간 과학논문 주제 탐색 (기능 동일)',
       color: 'green',
       popular: true
     },
     {
       id: '30일 이용권',
-      title: '30일 이용권', 
-      price: 18900,
+      title: '30일 프리미엄', 
+      price: 24900, // 🔥 18900원 -> 24900원
+      originalPrice: 39000, // 🔥 원가 표시
       duration: '30일',
       icon: CreditCard,
-      description: '한 달간 무제한 연구 주제 탐색',
+      description: '한 달간 과학논문 주제 탐색 (기능 동일)',
       color: 'purple',
       popular: false
     },
     {
       id: '선생님(90일) 이용권',
       title: '선생님(90일) 이용권',
-      price: 99000,
+      price: 52900, // 🔥 99000원 -> 52900원
+      originalPrice: 119000, // 🔥 원가 표시
       duration: '90일',
       icon: GraduationCap,
-      description: '교육용 3개월 프리미엄 이용권',
+      description: '교육용 3개월 과학논문 주제 탐색 (기능 동일)',
       color: 'orange',
       popular: false
     }
@@ -68,8 +71,7 @@ const PricingPage = () => {
     setResult({ type: '', message: '' });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
 
     if (!selectedLicense) {
       alert('이용권을 선택해주세요.');
@@ -86,13 +88,17 @@ const PricingPage = () => {
     setResult({ type: '', message: '' });
 
     try {
-      // CORS 우회: 동적 form 생성 방식
+      // 🔥 CORS 우회: iframe 방식으로 변경 (새 창 대신)
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.name = 'purchase_iframe';
+      
       const form = document.createElement('form');
       form.method = 'POST';
       form.action = 'https://script.google.com/macros/s/AKfycbzf3jRGmmHaf5okkHfypPucV6Xj0AlOKnrTQ_dcD_Kw-PmMXAkKO-vGmAqLN7QDqFzq/exec';
-      form.target = '_blank';
+      form.target = 'purchase_iframe'; // 🔥 '_blank' 대신 iframe 사용
 
-      // 데이터 추가
+      // 데이터 추가 (기존과 동일)
       const actionInput = document.createElement('input');
       actionInput.type = 'hidden';
       actionInput.name = 'action';
@@ -111,15 +117,66 @@ const PricingPage = () => {
       emailInput.value = buyerEmail;
       form.appendChild(emailInput);
 
+      // 🔥 iframe과 form을 DOM에 추가
+      document.body.appendChild(iframe);
       document.body.appendChild(form);
-      form.submit();
-      document.body.removeChild(form);
 
-      // 성공 메시지 표시
-      setResult({
-        type: 'success',
-        message: `구매 요청 완료! ${buyerEmail}로 이용권 코드가 발송됩니다. 새 창이 열리면서 처리 결과를 확인할 수 있습니다.`
-      });
+      // 🔥 iframe 로드 이벤트 처리
+      iframe.onload = function() {
+        try {
+          const iframeContent = iframe.contentDocument || iframe.contentWindow.document;
+          const htmlContent = iframeContent.documentElement.outerHTML;
+          
+          // PayApp 리다이렉트 페이지인지 확인
+          if (htmlContent.includes('PayApp') || htmlContent.includes('결제창')) {
+            // 실제 결제창을 새 창에서 열기
+            const scripts = iframeContent.querySelectorAll('script');
+            let payAppUrl = null;
+            
+            scripts.forEach(script => {
+              const scriptText = script.textContent || script.innerText;
+              const urlMatch = scriptText.match(/window\.location\.href = ['"]([^'"]+)['"]/);
+              if (urlMatch) {
+                payAppUrl = urlMatch[1];
+              }
+            });
+            
+            if (payAppUrl) {
+              window.open(payAppUrl, '_blank');
+            }
+            
+            setResult({
+              type: 'success',
+              message: `구매 요청 완료! PayApp 결제창이 새 창에서 열립니다. ${buyerEmail}로 결제 완료 후 이용권 코드가 발송됩니다.`
+            });
+          } else if (htmlContent.includes('오류') || htmlContent.includes('에러')) {
+            setResult({
+              type: 'error',
+              message: '결제 요청 중 오류가 발생했습니다. 다시 시도해주세요.'
+            });
+          } else {
+            setResult({
+              type: 'success',
+              message: `구매 요청 완료! ${buyerEmail}로 이용권 코드가 발송됩니다.`
+            });
+          }
+        } catch (error) {
+          // CORS로 인해 결과를 읽을 수 없는 경우 (정상)
+          setResult({
+            type: 'success',
+            message: `구매 요청 완료! ${buyerEmail}로 이용권 코드가 발송됩니다. 결제창이 새 창에서 열릴 수 있습니다.`
+          });
+        }
+        
+        // 정리
+        setTimeout(() => {
+          if (iframe.parentNode) document.body.removeChild(iframe);
+          if (form.parentNode) document.body.removeChild(form);
+        }, 2000);
+      };
+
+      // form 제출
+      form.submit();
 
     } catch (error) {
       setResult({
@@ -180,7 +237,7 @@ const PricingPage = () => {
           </div>
 
           <div className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="space-y-8">
               {/* License Options */}
               <div className="space-y-4">
                 <h3 className="text-xl font-bold text-slate-800 mb-6">이용권을 선택해주세요</h3>
@@ -188,6 +245,7 @@ const PricingPage = () => {
                 {licenses.map((license) => {
                   const IconComponent = license.icon;
                   const isSelected = selectedLicense === license.id;
+                  const discountPercent = Math.round((1 - license.price / license.originalPrice) * 100);
                   
                   return (
                     <div
@@ -207,6 +265,13 @@ const PricingPage = () => {
                           </div>
                         </div>
                       )}
+                      
+                      {/* 🔥 할인율 표시 */}
+                      <div className="absolute -top-3 right-6">
+                        <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                          {discountPercent}% 할인
+                        </div>
+                      </div>
                       
                       <div className="flex items-center space-x-4">
                         <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
@@ -228,8 +293,14 @@ const PricingPage = () => {
                             <h4 className="text-xl font-bold text-slate-800">
                               🎫 {license.title}
                             </h4>
-                            <div className="text-2xl font-bold text-blue-600">
-                              {license.price.toLocaleString()}원
+                            <div className="text-right">
+                              {/* 🔥 원가 취소선 + 할인가 */}
+                              <div className="text-sm text-slate-400 line-through">
+                                {license.originalPrice.toLocaleString()}원
+                              </div>
+                              <div className="text-2xl font-bold text-blue-600">
+                                {license.price.toLocaleString()}원
+                              </div>
                             </div>
                           </div>
                           <p className="text-slate-600 mt-1">{license.description}</p>
@@ -246,6 +317,21 @@ const PricingPage = () => {
                     </div>
                   );
                 })}
+              </div>
+
+              {/* 🔥 기능 동일성 안내 추가 */}
+              <div className="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-6">
+                <div className="flex items-start space-x-3">
+                  <AlertCircle className="w-6 h-6 text-yellow-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-bold text-yellow-800 mb-2">💡 중요 안내</h4>
+                    <p className="text-yellow-700 text-sm leading-relaxed">
+                      <strong>모든 이용권의 기능은 완전히 동일합니다.</strong> 
+                      기간만 다르며, 7일이든 90일이든 같은 과학논문 주제 탐색 도구를 사용하실 수 있습니다. 
+                      연구 기간에 맞춰 선택해주세요.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Email Input */}
@@ -270,7 +356,7 @@ const PricingPage = () => {
 
               {/* Submit Button */}
               <button
-                type="submit"
+                onClick={handleSubmit}
                 disabled={!isFormValid || loading}
                 className={`w-full py-5 rounded-2xl text-lg font-bold transition-all transform flex items-center justify-center space-x-3 ${
                   isFormValid && !loading
@@ -292,7 +378,7 @@ const PricingPage = () => {
                   <span>이용권 선택 후 구매하기</span>
                 )}
               </button>
-            </form>
+            </div>
 
             {/* Result Message */}
             {result.message && (
@@ -317,80 +403,8 @@ const PricingPage = () => {
           </div>
         </div>
 
-        {/* Additional Info */}
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
-          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg text-center">
-            <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-3" />
-            <h4 className="font-bold text-slate-800 mb-2">즉시 발송</h4>
-            <p className="text-sm text-slate-600">구매 완료 즉시 이메일로 이용권 코드를 받아보세요</p>
-          </div>
-          
-          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg text-center">
-            <Users className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-            <h4 className="font-bold text-slate-800 mb-2">안전한 결제</h4>
-            <p className="text-sm text-slate-600">검증된 결제 시스템으로 안전하게 거래하세요</p>
-          </div>
-          
-          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg text-center">
-            <Clock className="w-8 h-8 text-purple-600 mx-auto mb-3" />
-            <h4 className="font-bold text-slate-800 mb-2">24시간 지원</h4>
-            <p className="text-sm text-slate-600">언제든지 문의사항이 있으면 연락주세요</p>
-          </div>
-        </div>
-      </div>
 
-      {/* Footer */}
-      <footer className="bg-slate-900 text-slate-300 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-12">
-            <div className="col-span-2">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mr-4 shadow-lg">
-                  <Beaker className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white">과학연구설계 AI</h3>
-                  <p className="text-sm text-slate-400">고등학생 연구활동 전문 도우미</p>
-                </div>
-              </div>
-              <p className="text-slate-400 mb-6 leading-relaxed max-w-md">
-                연구가 처음인 고등학생들도 쉽게 따라할 수 있도록 
-                AI가 연구의 모든 과정을 단계별로 친절하게 도와드립니다.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-bold text-white mb-6 text-lg">결제 및 지원</h4>
-              <ul className="space-y-3">
-                <li><a href="terms.html" className="hover:text-white transition-colors text-sm">결제 방법</a></li>
-                <li><a href="terms.html" className="hover:text-white transition-colors text-sm">환불 정책</a></li>
-                <li><a href="terms.html" className="hover:text-white transition-colors text-sm">이용약관</a></li>
-                <li><a href="privacy.html" className="hover:text-white transition-colors text-sm">개인정보처리방침</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold text-white mb-6 text-lg">고객지원</h4>
-              <ul className="space-y-3">
-                <li><a href="help.html" className="hover:text-white transition-colors text-sm">사용방법 안내</a></li>
-                <li><a href="faq.html" className="hover:text-white transition-colors text-sm">자주묻는질문</a></li>
-                <li><a href="contact.html" className="hover:text-white transition-colors text-sm">문의하기</a></li>
-                <li><a href="contact.html" className="hover:text-white transition-colors text-sm">피드백 보내기</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-slate-400 mb-4 md:mb-0">
-              © 2025 과학연구설계 AI. 모든 권리 보유.
-            </p>
-            <div className="flex items-center text-sm text-slate-400 space-x-2">
-              <CheckCircle className="w-4 h-4" />
-              <span>안전한 결제 시스템</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 };
