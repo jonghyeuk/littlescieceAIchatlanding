@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import { 
   ArrowRight, 
-  Search, 
   Beaker, 
-  FileText, 
-  MessageCircle, 
   Star, 
-  Clock, 
-  Award, 
   BookOpen, 
   Users,
-  CheckCircle,
-  Check,
-  ArrowLeft,
-  Shield
+  Search,
+  FileText,
+  MessageCircle,
+  Clock,
+  Award,
+  CheckCircle
 } from 'lucide-react';
 
 // 🔥 외부 PricingPage 컴포넌트 import
@@ -148,5 +145,7 @@ const App = () => {
     </div>
   );
 };
+
+export default App;
 
 export default App;
