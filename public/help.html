@@ -1,362 +1,386 @@
-import React from 'react';
-import { 
-  ArrowLeft, 
-  Search, 
-  Beaker, 
-  FileText, 
-  MessageCircle, 
-  CheckCircle,
-  Play,
-  Target,
-  Clock,
-  BookOpen
-} from 'lucide-react';
-
-const HelpPage = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-200/50 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <a href="index.html" className="flex items-center hover:opacity-80 transition-opacity">
-                <ArrowLeft className="w-5 h-5 text-slate-600 mr-3" />
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg">
-                  <Beaker className="w-6 h-6 text-white" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사용방법 안내 - 과학연구설계 AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    <style>
+        /* 아이콘 스타일링 */
+        .lucide {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            stroke-width: 2;
+            stroke: currentColor;
+            fill: none;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-200/50 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                        <svg class="w-5 h-5 text-slate-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 7.172V5L8 4z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <h1 class="text-xl font-bold text-slate-800">과학연구설계 AI</h1>
+                            <p class="text-xs text-slate-500">사용방법 안내</p>
+                        </div>
+                    </a>
                 </div>
-                <div className="ml-3">
-                  <h1 className="text-xl font-bold text-slate-800">과학연구설계 AI</h1>
-                  <p className="text-xs text-slate-500">사용방법 안내</p>
+                <div class="flex items-center space-x-4">
+                    <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg">
+                            바로 시작하기
+                        </button>
+                    </a>
                 </div>
-              </a>
             </div>
-            <div className="flex items-center space-x-4">
-              <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
-                <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg">
-                  바로 시작하기
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                <span class="text-slate-800">사용방법 안내</span>
+                <br>
+                <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    이렇게 쉬워요! 📚
+                </span>
+            </h1>
+            <p class="text-xl text-slate-600 mb-8">
+                처음 사용하는 학생도 5분이면 마스터할 수 있어요
+            </p>
+        </div>
+    </section>
+
+    <!-- Quick Start Guide -->
+    <section class="py-12 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">
+                    ⚡ 빠른 시작 가이드
+                </h2>
+                <p class="text-lg text-slate-600">
+                    3단계면 바로 연구 시작할 수 있어요!
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-8 border border-blue-200">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-white">1</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">사이트 접속</h3>
+                        <p class="text-slate-600 mb-6">
+                            회원가입 없이 바로<br>
+                            <strong>littlescienceaichat.web.app</strong><br>
+                            접속하세요!
+                        </p>
+                        <div class="bg-white rounded-lg p-4 text-sm text-slate-500">
+                            💡 북마크 해두면 편해요!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-3xl p-8 border border-green-200">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-white">2</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">관심분야 입력</h3>
+                        <p class="text-slate-600 mb-6">
+                            "환경오염", "우주", "AI" 등<br>
+                            관심있는 키워드만<br>
+                            입력하세요!
+                        </p>
+                        <div class="bg-white rounded-lg p-4 text-sm text-slate-500">
+                            💡 구체적일수록 좋은 추천을 받아요!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl p-8 border border-purple-200">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-white">3</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">AI와 대화</h3>
+                        <p class="text-slate-600 mb-6">
+                            AI가 추천해주는 주제 중<br>
+                            마음에 드는 걸 선택하고<br>
+                            질문하세요!
+                        </p>
+                        <div class="bg-white rounded-lg p-4 text-sm text-slate-500">
+                            💡 "어떻게 실험하죠?" 라고 물어보세요!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Steps -->
+    <section class="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">
+                    📖 단계별 상세 가이드
+                </h2>
+                <p class="text-lg text-slate-600">
+                    각 단계를 자세히 알아보세요
+                </p>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Step 1: Research Topic -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
+                    <div class="flex items-start space-x-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">1단계: 연구주제 찾기</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-slate-700 mb-3">💡 이렇게 해보세요:</h4>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li>• "환경오염이 궁금해요" 라고 입력</li>
+                                        <li>• "우주에 대해 연구하고 싶어요"</li>
+                                        <li>• "인공지능 관련 연구주제 추천해주세요"</li>
+                                        <li>• "미생물 실험하고 싶어요"</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-700 mb-3">🎯 AI가 이런 걸 해줘요:</h4>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li>• 20,000개 수상작에서 비슷한 연구 찾기</li>
+                                        <li>• 고등학생 수준에 맞는 주제 추천</li>
+                                        <li>• 실현 가능한 연구인지 검토</li>
+                                        <li>• 연구의 의미와 가치 설명</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Experiment Design -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
+                    <div class="flex items-start space-x-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 7.172V5L8 4z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">2단계: 실험 설계하기</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-slate-700 mb-3">💡 이렇게 물어보세요:</h4>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li>• "어떤 실험을 해야 하나요?"</li>
+                                        <li>• "필요한 재료가 뭐예요?"</li>
+                                        <li>• "실험 순서를 알려주세요"</li>
+                                        <li>• "주의할 점이 있나요?"</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-700 mb-3">🔬 AI가 이런 걸 해줘요:</h4>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li>• 단계별 실험 방법 안내</li>
+                                        <li>• 필요한 재료와 도구 목록</li>
+                                        <li>• 안전 주의사항 설명</li>
+                                        <li>• 예상 결과와 해석 방법</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Report Writing -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
+                    <div class="flex items-start space-x-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">3단계: 보고서 작성하기</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-slate-700 mb-3">💡 이렇게 알려주세요:</h4>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li>• "실험 결과가 이렇게 나왔어요"</li>
+                                        <li>• "그래프로 보여드릴게요"</li>
+                                        <li>• "보고서 써주세요"</li>
+                                        <li>• "결론 부분 도와주세요"</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-700 mb-3">📄 AI가 이런 걸 해줘요:</h4>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li>• 완벽한 보고서 구조 작성</li>
+                                        <li>• 과학적 표현과 용어 사용</li>
+                                        <li>• 결과 분석과 해석 도움</li>
+                                        <li>• 참고문헌 정리</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Q&A -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
+                    <div class="flex items-start space-x-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">4단계: 언제든지 질문하기</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-slate-700 mb-3">💡 이런 질문 환영해요:</h4>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li>• "이 부분이 이해가 안돼요"</li>
+                                        <li>• "다른 방법은 없나요?"</li>
+                                        <li>• "왜 이런 결과가 나왔죠?"</li>
+                                        <li>• "발표 준비는 어떻게 해요?"</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-700 mb-3">🤖 AI가 이런 걸 해줘요:</h4>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li>• 24시간 언제든지 답변</li>
+                                        <li>• 쉽고 친절한 설명</li>
+                                        <li>• 추가 자료와 예시 제공</li>
+                                        <li>• 개인별 맞춤 조언</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">
+                    🏆 성공하는 사용 팁
+                </h2>
+                <p class="text-lg text-slate-600">
+                    이렇게 하면 더 좋은 결과를 얻을 수 있어요!
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200">
+                    <svg class="w-10 h-10 text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">구체적으로 질문하기</h3>
+                    <p class="text-slate-600 text-sm">
+                        "연구주제 추천해주세요" 보다는<br>
+                        "환경오염 중에서 미세먼지 관련 연구주제 추천해주세요"가 더 좋아요!
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border border-green-200">
+                    <svg class="w-10 h-10 text-green-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">충분한 시간 갖기</h3>
+                    <p class="text-slate-600 text-sm">
+                        한 번에 모든 걸 하려고 하지 마세요.<br>
+                        단계별로 천천히 진행하는 게 더 좋은 결과를 만들어요!
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200">
+                    <svg class="w-10 h-10 text-purple-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">많이 질문하기</h3>
+                    <p class="text-slate-600 text-sm">
+                        모르는 게 있으면 바로바로 질문하세요.<br>
+                        AI는 24시간 기다리고 있어요! 😊
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-br from-blue-600 to-indigo-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                이제 시작해볼까요? 🚀
+            </h2>
+            <p class="text-xl text-blue-100 mb-8">
+                6분 무료체험으로 바로 확인해보세요!
+            </p>
+            <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+                <button class="bg-white text-blue-600 px-10 py-4 rounded-2xl text-lg font-bold hover:bg-blue-50 transition-all shadow-xl">
+                    <svg class="inline-block w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M12 5v.01M17 11l2.5-2.5M19.5 8.5L17 11m2.5-2.5L17 11m2.5-2.5v3"/>
+                    </svg>
+                    지금 바로 시작하기
                 </button>
-              </a>
-            </div>
-          </div>
+            </a>
         </div>
-      </nav>
+    </section>
 
-      {/* Hero Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-slate-800">사용방법 안내</span>
-            <br />
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              이렇게 쉬워요! 📚
-            </span>
-          </h1>
-          <p className="text-xl text-slate-600 mb-8">
-            처음 사용하는 학생도 5분이면 마스터할 수 있어요
-          </p>
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center mb-6">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mr-4">
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 7.172V5L8 4z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">과학연구설계 AI</h3>
+                    <p class="text-sm text-slate-400">고등학생 연구활동 전문 도우미</p>
+                </div>
+            </div>
+            <div class="flex justify-center space-x-8 text-sm">
+                <a href="index.html" class="hover:text-white transition-colors">홈으로</a>
+                <a href="faq.html" class="hover:text-white transition-colors">자주묻는질문</a>
+                <a href="contact.html" class="hover:text-white transition-colors">문의하기</a>
+            </div>
+            <div class="mt-8 pt-8 border-t border-slate-800 text-sm text-slate-400">
+                © 2025 과학연구설계 AI. 모든 권리 보유.
+            </div>
         </div>
-      </section>
-
-      {/* Quick Start Guide */}
-      <section className="py-12 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              ⚡ 빠른 시작 가이드
-            </h2>
-            <p className="text-lg text-slate-600">
-              3단계면 바로 연구 시작할 수 있어요!
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Step 1 */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-8 border border-blue-200">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">1</span>
-                </div>
-                <h3 className="text-2xl font-bold text-slate-800 mb-4">사이트 접속</h3>
-                <p className="text-slate-600 mb-6">
-                  회원가입 없이 바로<br />
-                  <strong>littlescienceaichat.web.app</strong><br />
-                  접속하세요!
-                </p>
-                <div className="bg-white rounded-lg p-4 text-sm text-slate-500">
-                  💡 북마크 해두면 편해요!
-                </div>
-              </div>
-            </div>
-
-            {/* Step 2 */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-3xl p-8 border border-green-200">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">2</span>
-                </div>
-                <h3 className="text-2xl font-bold text-slate-800 mb-4">관심분야 입력</h3>
-                <p className="text-slate-600 mb-6">
-                  "환경오염", "우주", "AI" 등<br />
-                  관심있는 키워드만<br />
-                  입력하세요!
-                </p>
-                <div className="bg-white rounded-lg p-4 text-sm text-slate-500">
-                  💡 구체적일수록 좋은 추천을 받아요!
-                </div>
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl p-8 border border-purple-200">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">3</span>
-                </div>
-                <h3 className="text-2xl font-bold text-slate-800 mb-4">AI와 대화</h3>
-                <p className="text-slate-600 mb-6">
-                  AI가 추천해주는 주제 중<br />
-                  마음에 드는 걸 선택하고<br />
-                  질문하세요!
-                </p>
-                <div className="bg-white rounded-lg p-4 text-sm text-slate-500">
-                  💡 "어떻게 실험하죠?" 라고 물어보세요!
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Detailed Steps */}
-      <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              📖 단계별 상세 가이드
-            </h2>
-            <p className="text-lg text-slate-600">
-              각 단계를 자세히 알아보세요
-            </p>
-          </div>
-
-          <div className="space-y-12">
-            {/* Step 1: Research Topic */}
-            <div className="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
-              <div className="flex items-start space-x-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Search className="w-8 h-8 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-slate-800 mb-4">1단계: 연구주제 찾기</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold text-slate-700 mb-3">💡 이렇게 해보세요:</h4>
-                      <ul className="space-y-2 text-slate-600">
-                        <li>• "환경오염이 궁금해요" 라고 입력</li>
-                        <li>• "우주에 대해 연구하고 싶어요"</li>
-                        <li>• "인공지능 관련 연구주제 추천해주세요"</li>
-                        <li>• "미생물 실험하고 싶어요"</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-700 mb-3">🎯 AI가 이런 걸 해줘요:</h4>
-                      <ul className="space-y-2 text-slate-600">
-                        <li>• 20,000개 수상작에서 비슷한 연구 찾기</li>
-                        <li>• 고등학생 수준에 맞는 주제 추천</li>
-                        <li>• 실현 가능한 연구인지 검토</li>
-                        <li>• 연구의 의미와 가치 설명</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Step 2: Experiment Design */}
-            <div className="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
-              <div className="flex items-start space-x-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Beaker className="w-8 h-8 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-slate-800 mb-4">2단계: 실험 설계하기</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold text-slate-700 mb-3">💡 이렇게 물어보세요:</h4>
-                      <ul className="space-y-2 text-slate-600">
-                        <li>• "어떤 실험을 해야 하나요?"</li>
-                        <li>• "필요한 재료가 뭐예요?"</li>
-                        <li>• "실험 순서를 알려주세요"</li>
-                        <li>• "주의할 점이 있나요?"</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-700 mb-3">🔬 AI가 이런 걸 해줘요:</h4>
-                      <ul className="space-y-2 text-slate-600">
-                        <li>• 단계별 실험 방법 안내</li>
-                        <li>• 필요한 재료와 도구 목록</li>
-                        <li>• 안전 주의사항 설명</li>
-                        <li>• 예상 결과와 해석 방법</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Step 3: Report Writing */}
-            <div className="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
-              <div className="flex items-start space-x-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <FileText className="w-8 h-8 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-slate-800 mb-4">3단계: 보고서 작성하기</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold text-slate-700 mb-3">💡 이렇게 알려주세요:</h4>
-                      <ul className="space-y-2 text-slate-600">
-                        <li>• "실험 결과가 이렇게 나왔어요"</li>
-                        <li>• "그래프로 보여드릴게요"</li>
-                        <li>• "보고서 써주세요"</li>
-                        <li>• "결론 부분 도와주세요"</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-700 mb-3">📄 AI가 이런 걸 해줘요:</h4>
-                      <ul className="space-y-2 text-slate-600">
-                        <li>• 완벽한 보고서 구조 작성</li>
-                        <li>• 과학적 표현과 용어 사용</li>
-                        <li>• 결과 분석과 해석 도움</li>
-                        <li>• 참고문헌 정리</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Step 4: Q&A */}
-            <div className="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
-              <div className="flex items-start space-x-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-8 h-8 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-slate-800 mb-4">4단계: 언제든지 질문하기</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold text-slate-700 mb-3">💡 이런 질문 환영해요:</h4>
-                      <ul className="space-y-2 text-slate-600">
-                        <li>• "이 부분이 이해가 안돼요"</li>
-                        <li>• "다른 방법은 없나요?"</li>
-                        <li>• "왜 이런 결과가 나왔죠?"</li>
-                        <li>• "발표 준비는 어떻게 해요?"</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-700 mb-3">🤖 AI가 이런 걸 해줘요:</h4>
-                      <ul className="space-y-2 text-slate-600">
-                        <li>• 24시간 언제든지 답변</li>
-                        <li>• 쉽고 친절한 설명</li>
-                        <li>• 추가 자료와 예시 제공</li>
-                        <li>• 개인별 맞춤 조언</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tips Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              🏆 성공하는 사용 팁
-            </h2>
-            <p className="text-lg text-slate-600">
-              이렇게 하면 더 좋은 결과를 얻을 수 있어요!
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200">
-              <Target className="w-10 h-10 text-blue-600 mb-4" />
-              <h3 className="text-lg font-bold text-slate-800 mb-3">구체적으로 질문하기</h3>
-              <p className="text-slate-600 text-sm">
-                "연구주제 추천해주세요" 보다는<br />
-                "환경오염 중에서 미세먼지 관련 연구주제 추천해주세요"가 더 좋아요!
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border border-green-200">
-              <Clock className="w-10 h-10 text-green-600 mb-4" />
-              <h3 className="text-lg font-bold text-slate-800 mb-3">충분한 시간 갖기</h3>
-              <p className="text-slate-600 text-sm">
-                한 번에 모든 걸 하려고 하지 마세요.<br />
-                단계별로 천천히 진행하는 게 더 좋은 결과를 만들어요!
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200">
-              <BookOpen className="w-10 h-10 text-purple-600 mb-4" />
-              <h3 className="text-lg font-bold text-slate-800 mb-3">많이 질문하기</h3>
-              <p className="text-slate-600 text-sm">
-                모르는 게 있으면 바로바로 질문하세요.<br />
-                AI는 24시간 기다리고 있어요! 😊
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-600 to-indigo-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            이제 시작해볼까요? 🚀
-          </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            6분 무료체험으로 바로 확인해보세요!
-          </p>
-          <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
-            <button className="bg-white text-blue-600 px-10 py-4 rounded-2xl text-lg font-bold hover:bg-blue-50 transition-all shadow-xl">
-              <Play className="inline-block w-6 h-6 mr-3" />
-              지금 바로 시작하기
-            </button>
-          </a>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 text-slate-300 py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mr-4">
-              <Beaker className="w-7 h-7 text-white" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-white">과학연구설계 AI</h3>
-              <p className="text-sm text-slate-400">고등학생 연구활동 전문 도우미</p>
-            </div>
-          </div>
-          <div className="flex justify-center space-x-8 text-sm">
-            <a href="index.html" className="hover:text-white transition-colors">홈으로</a>
-            <a href="faq.html" className="hover:text-white transition-colors">자주묻는질문</a>
-            <a href="contact.html" className="hover:text-white transition-colors">문의하기</a>
-          </div>
-          <div className="mt-8 pt-8 border-t border-slate-800 text-sm text-slate-400">
-            © 2025 과학연구설계 AI. 모든 권리 보유.
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-};
-
-export default HelpPage;
+    </footer>
+</body>
+</html>
