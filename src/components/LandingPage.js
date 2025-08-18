@@ -7,13 +7,8 @@ import {
   MessageCircle, 
   Star, 
   Clock, 
-  Brain, 
-  Target, 
-  Lightbulb, 
-  Zap, 
   Award, 
   BookOpen, 
-  TrendingUp,
   Users,
   CheckCircle 
 } from 'lucide-react';
