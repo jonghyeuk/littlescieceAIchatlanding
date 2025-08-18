@@ -95,7 +95,7 @@ const PricingPage = ({ onBackToLanding }) => {
       
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = 'https://script.google.com/macros/s/AKfycbzf3jRGmmHaf5okkHfypPucV6Xj0AlOKnrTQ_dcD_Kw-PmMXAkKO-vGmAqLN7QDqFzq/exec';
+      form.action = 'https://script.google.com/macros/s/AKfycbwIw2GMKVKX5pvRZbIDgrnCvl3QWHX-9zig241_YLLHDExPOzLnPxjTmMeM9FJ0yzI/exec';
       form.target = 'purchase_iframe'; // 🔥 '_blank' 대신 iframe 사용
 
       // 데이터 추가 (기존과 동일)
