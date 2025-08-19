@@ -10,10 +10,7 @@ import {
   MessageCircle,
   Clock,
   Award,
-  CheckCircle,
-  Check,
-  ArrowLeft,
-  Shield
+  CheckCircle
 } from 'lucide-react';
 
 // 🔥 외부 PricingPage 컴포넌트 import
