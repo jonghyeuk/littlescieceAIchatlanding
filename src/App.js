@@ -10,7 +10,10 @@ import {
   MessageCircle,
   Clock,
   Award,
-  CheckCircle
+  CheckCircle,
+  Check,
+  ArrowLeft,
+  Shield
 } from 'lucide-react';
 
 // 🔥 외부 PricingPage 컴포넌트 import
@@ -247,13 +250,211 @@ const App = () => {
           </div>
         </section>
 
-        {/* 나머지 섹션들도 동일하게... */}
-        {/* 여기에 기존 How It Works, CTA, Footer 섹션들 추가 */}
-        
+        {/* How It Works Section */}
+        <section id="how-it-works-section" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <span className="text-slate-800">
+                  이렇게 간단해요!
+                </span>
+              </h2>
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                복잡해 보이는 연구도 AI와 함께하면 이렇게 쉬워집니다
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Step 1 */}
+              <div className="relative">
+                <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200/50 h-full text-center">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                      1
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                      <Search className="w-8 h-8 text-blue-600" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-slate-800 mb-4">관심분야 입력</h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      "환경오염", "우주", "AI" 등<br/>
+                      관심있는 분야만 입력하세요!<br/>
+                      AI가 연구할 만한 주제들을<br/>
+                      추천해드려요 📝
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="relative">
+                <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200/50 h-full text-center">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                      2
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                      <Beaker className="w-8 h-8 text-green-600" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-slate-800 mb-4">실험방법 안내</h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      주제를 선택하면<br/>
+                      어떤 실험을 해야 할지<br/>
+                      단계별로 친절하게<br/>
+                      설명해드려요 🔬
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="relative">
+                <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200/50 h-full text-center">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                      3
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                      <FileText className="w-8 h-8 text-purple-600" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-slate-800 mb-4">보고서 완성</h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      실험 결과만 입력하면<br/>
+                      AI가 자동으로<br/>
+                      멋진 연구보고서를<br/>
+                      완성해드려요 📄
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-purple-600/90"></div>
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
+              지금 바로 시작해보세요!
+              <span className="block text-yellow-300 text-3xl md:text-4xl mt-4">
+                6분이면 충분해요 ⏰
+              </span>
+            </h2>
+            <p className="text-xl md:text-2xl text-blue-100 mb-16 max-w-4xl mx-auto leading-relaxed">
+              회원가입도 필요없어요! 바로 체험해보고 마음에 들면 계속 사용하세요.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+              <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
+                <button className="group bg-white text-blue-600 px-12 py-6 rounded-2xl text-xl font-bold hover:bg-blue-50 transition-all shadow-2xl hover:shadow-white/20 transform hover:-translate-y-1 flex items-center">
+                  <Clock className="mr-4 w-7 h-7" />
+                  6분 무료체험 시작
+                  <span className="ml-3 text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full">FREE</span>
+                </button>
+              </a>
+              <button 
+                onClick={() => document.getElementById('how-it-works-section')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white px-12 py-6 rounded-2xl text-xl font-bold hover:bg-white/20 transition-all flex items-center"
+              >
+                사용방법
+                <ArrowRight className="ml-4 w-7 h-7 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button 
+                onClick={() => setCurrentPage('pricing')}
+                className="group bg-gradient-to-r from-orange-500 to-red-500 text-white px-12 py-6 rounded-2xl text-xl font-bold hover:from-orange-600 hover:to-red-600 transition-all shadow-2xl hover:shadow-orange-500/25 transform hover:-translate-y-1 flex items-center"
+              >
+                이용권구매
+                <Star className="ml-4 w-7 h-7 group-hover:rotate-12 transition-transform" />
+              </button>
+            </div>
+            
+            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="text-3xl font-bold text-white mb-2">2,000+</div>
+                <div className="text-blue-100 text-sm">고등학생 이용자</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="text-3xl font-bold text-white mb-2">6분</div>
+                <div className="text-blue-100 text-sm">무료 체험시간</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="text-3xl font-bold text-white mb-2">4단계</div>
+                <div className="text-blue-100 text-sm">간단한 연구과정</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="text-3xl font-bold text-white mb-2">24시간</div>
+                <div className="text-blue-100 text-sm">AI 도움 서비스</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-slate-900 text-slate-300 py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-4 gap-12">
+              <div className="col-span-2">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                    <Beaker className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">과학연구설계 AI</h3>
+                    <p className="text-sm text-slate-400">고등학생 연구활동 전문 도우미</p>
+                  </div>
+                </div>
+                <p className="text-slate-400 mb-6 leading-relaxed max-w-md">
+                  연구가 처음인 고등학생들도 쉽게 따라할 수 있도록 
+                  AI가 연구의 모든 과정을 단계별로 친절하게 도와드립니다.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="font-bold text-white mb-6 text-lg">주요 기능</h4>
+                <ul className="space-y-3">
+                  <li><span className="text-slate-400 text-sm">연구주제 추천 대회출품작 조회</span></li>
+                  <li><span className="text-slate-400 text-sm">실험설계 가이드</span></li>
+                  <li><span className="text-slate-400 text-sm">보고서 자동작성</span></li>
+                  <li><span className="text-slate-400 text-sm">AI 질문답변</span></li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-bold text-white mb-6 text-lg">고객지원</h4>
+                <ul className="space-y-3">
+                  <li><a href="help.html" className="hover:text-white transition-colors text-sm">사용방법 안내</a></li>
+                  <li><a href="faq.html" className="hover:text-white transition-colors text-sm">자주묻는질문</a></li>
+                  <li><a href="contact.html" className="hover:text-white transition-colors text-sm">문의하기</a></li>
+                  <li><a href="contact.html" className="hover:text-white transition-colors text-sm">피드백 보내기</a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+              <p className="text-sm text-slate-400 mb-4 md:mb-0">
+                © 2025 과학연구설계 AI. 모든 권리 보유.
+              </p>
+              <div className="flex items-center text-sm text-slate-400 space-x-6">
+                <a href="privacy.html" className="hover:text-white transition-colors">개인정보처리방침</a>
+                <a href="terms.html" className="hover:text-white transition-colors">이용약관</a>
+                <a href="parents.html" className="hover:text-white transition-colors">지도교사/학부모 가이드</a>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   };
 
+  // 🔥 PricingPage 컴포넌트는 외부에서 import하므로 여기서는 렌더링만
   // 현재 페이지에 따라 컴포넌트 렌더링
   return (
     <div className="App">
