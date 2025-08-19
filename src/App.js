@@ -550,7 +550,7 @@ const App = () => {
 
       try {
         // 실제 Google Apps Script URL
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzf3jRGmmHaf5okkHfypPucV6Xj0AlOKnrTQ_dcD_Kw-PmMXAkKO-vGmAqLN7QDqFzq/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzrW6Ys8K4zQ5fKpsEcRobbze4kPFJPmnQUlPFebKmbIo8hei8VDYDdKWL7YeTEunkV/exec', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
