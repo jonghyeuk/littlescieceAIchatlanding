@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 완료 - LittleScienceAI</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;}
+        html {scroll-behavior:smooth;}
+        body {
+            font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+            background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+            min-height:100vh;padding:20px 0;
+            position:relative;display:flex;align-items:center;justify-content:center;
+        }
+        body::before {
+            content:'';
+            position:absolute;top:0;left:0;right:0;bottom:0;
+            background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="15" fill="rgba(255,255,255,0.05)"/><circle cx="80" cy="40" r="20" fill="rgba(255,255,255,0.03)"/><circle cx="40" cy="70" r="12" fill="rgba(255,255,255,0.06)"/><circle cx="90" cy="80" r="18" fill="rgba(255,255,255,0.04)"/></svg>');
+            animation:float 20s ease-in-out infinite;
+        }
+        @keyframes float {0%,100%{transform:translateY(0px) rotate(0deg);}50%{transform:translateY(-20px) rotate(180deg);}}
+        .container {
+            background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);
+            padding:40px;border-radius:20px;
+            box-shadow:0 15px 35px rgba(0,0,0,0.1);
+            max-width:600px;width:90%;position:relative;z-index:1;
+            border:1px solid rgba(255,255,255,0.2);text-align:center;
+        }
+        .success-badge {
+            position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+            background:linear-gradient(45deg,#28a745,#20c997);
+            color:white;padding:15px 30px;border-radius:50px;
+            font-weight:bold;font-size:16px;box-shadow:0 10px 25px rgba(40,167,69,0.4);
+            animation:successPulse 2s infinite;
+        }
+        @keyframes successPulse {0%,100%{transform:translateX(-50%) scale(1);}50%{transform:translateX(-50%) scale(1.05);}}
+        .success-check {
+            width:80px;height:80px;border-radius:50%;
+            background:linear-gradient(45deg,#28a745,#20c997);
+            margin:0 auto 20px;display:flex;align-items:center;justify-content:center;
+            position:relative;animation:checkmark 0.8s ease-in-out;
+        }
+        .success-check::before {
+            content:'✓';color:white;font-size:40px;font-weight:bold;
+            animation:checkmarkAppear 0.5s ease-in-out 0.3s both;
+        }
+        @keyframes checkmark {0%{transform:scale(0) rotate(45deg);}50%{transform:scale(1.2) rotate(45deg);}100%{transform:scale(1) rotate(0deg);}}
+        @keyframes checkmarkAppear {0%{opacity:0;transform:scale(0);}100%{opacity:1;transform:scale(1);}}
+        .header {margin-bottom:30px;}
+        .header h1 {color:#333;font-size:32px;margin-bottom:10px;animation:slideInDown 0.6s ease-out;}
+        .header p {color:#28a745;font-size:18px;font-weight:bold;animation:slideInUp 0.6s ease-out 0.2s both;}
+        @keyframes slideInDown {0%{transform:translateY(-30px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
+        @keyframes slideInUp {0%{transform:translateY(30px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
+        .license-info {
+            background:linear-gradient(135deg,#f8f9ff 0%,#e3e7ff 100%);
+            border:2px solid #667eea;border-radius:15px;
+            padding:25px;margin:25px 0;animation:fadeInScale 0.7s ease-out 0.4s both;
+        }
+        .license-details {color:#666;font-size:14px;margin-top:10px;}
+        @keyframes fadeInScale {0%{transform:scale(0.9);opacity:0;}100%{transform:scale(1);opacity:1;}}
+        .email-notice {
+            background:#e8f5e8;border:2px solid #28a745;
+            border-radius:12px;padding:20px;margin:25px 0;
+            animation:slideInLeft 0.8s ease-out 0.6s both;
+        }
+        .email-notice h4 {color:#28a745;margin-bottom:10px;font-size:18px;}
+        .email-notice p {color:#666;margin:8px 0;font-size:14px;}
+        @keyframes slideInLeft {0%{transform:translateX(-30px);opacity:0;}100%{transform:translateX(0);opacity:1;}}
+        .usage-guide {
+            background:#fff3cd;border:2px solid #ffc107;
+            border-radius:12px;padding:20px;margin:25px 0;text-align:left;
+            animation:slideInRight 0.8s ease-out 0.8s both;
+        }
+        .usage-guide h4 {color:#856404;margin-bottom:15px;font-size:18px;text-align:center;}
+        .usage-guide ol {color:#856404;padding-left:20px;}
+        .usage-guide li {margin-bottom:8px;font-size:14px;}
+        @keyframes slideInRight {0%{transform:translateX(30px);opacity:0;}100%{transform:translateX(0);opacity:1;}}
+        .button-group {margin:30px 0;animation:fadeIn 1s ease-out 1s both;}
+        .main-button {
+            display:inline-block;background:linear-gradient(45deg,#667eea,#764ba2);
+            color:white;text-decoration:none;padding:15px 30px;
+            border-radius:25px;font-weight:bold;font-size:16px;
+            margin:10px;box-shadow:0 5px 15px rgba(102,126,234,0.3);
+            transition:transform 0.2s,box-shadow 0.2s;
+        }
+        .main-button:hover {transform:translateY(-2px);box-shadow:0 8px 25px rgba(102,126,234,0.4);}
+        @keyframes fadeIn {0%{opacity:0;}100%{opacity:1;}}
+        .contact-info {
+            background:#f8f9fa;border-radius:10px;
+            padding:20px;margin-top:30px;
+            animation:fadeIn 1.2s ease-out 1.2s both;
+        }
+        .contact-info h4 {color:#333;margin-bottom:10px;}
+        .contact-info p {color:#666;font-size:14px;margin:5px 0;}
+        .copy-email {
+            background:#fff;border:1px solid #ccc;border-radius:8px;
+            display:inline-block;padding:8px 18px;
+            font-size:15px;color:#333;font-weight:bold;
+            margin-top:10px;cursor:pointer;user-select:all;
+            transition:background 0.2s;
+        }
+        .copy-email:active {background:#f2f2f2;}
+        @media (max-width:768px) {
+            .container {padding:30px 20px;margin:10px;width:calc(100% - 20px);}
+            .header h1 {font-size:28px;}
+            .main-button {display:block;margin:10px 0;text-align:center;}
+        }
+        @media (max-width:480px) {
+            .container {padding:20px 15px;}
+            .success-badge {font-size:14px;padding:12px 25px;}
+        }
+        .fade-in {animation:fadeInMain 0.5s ease-out;}
+        @keyframes fadeInMain {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
+    </style>
+</head>
+<body>
+    <div class="container fade-in">
+        <div class="success-badge">✅ 결제 완료</div>
+        <div class="success-check"></div>
+        <div class="header">
+            <h1>🎉 구매 완료!</h1>
+            <p>LittleScienceAI 이용권이 성공적으로 발급되었습니다</p>
+        </div>
+        <!-- 이용권 안내 -->
+        <div class="license-info">
+            <div class="license-details">
+                🔒 이용권 코드는 이메일로 안전하게 발송되었습니다
+            </div>
+        </div>
+        <!-- 이메일 발송 안내 -->
+        <div class="email-notice">
+            <h4>📧 이메일 발송 완료</h4>
+            <p>입력하신 이메일 주소로 이용권 코드가 발송되었습니다.</p>
+            <p>📱 이메일이 도착하지 않으면 스팸함을 확인해주세요</p>
+            <p>⏰ 보통 1-2분 내에 이메일이 도착합니다</p>
+        </div>
+        <!-- 이용 방법 안내 -->
+        <div class="usage-guide">
+            <h4>🚀 이용 방법</h4>
+            <ol>
+                <li><strong>아래 버튼을 클릭</strong>하여 LittleScienceAI에 접속하세요</li>
+                <li><strong>인증 키 입력란</strong>에 이메일로 받은 이용권 코드를 입력하세요</li>
+                <li><strong>과학 논문 탐색</strong>을 시작하세요!</li>
+                <li>이용 중 문제가 있으면 언제든 문의해주세요</li>
+            </ol>
+        </div>
+        <!-- 버튼 그룹 -->
+        <div class="button-group">
+            <a href="https://littlescienceaichat.web.app/" class="main-button" target="_blank">
+                🧪 LittleScienceAI 시작하기
+            </a>
+        </div>
+        <!-- 문의 정보 -->
+        <div class="contact-info">
+            <h4>💬 문의하기</h4>
+            <p>이용 중 궁금한 점이나 문제가 있으시면 언제든 이메일로 연락주세요</p>
+            <div class="copy-email" id="contactEmail">littlescienceai@gmail.com</div>
+            <p style="margin-top:15px;font-size:12px;color:#999;">
+                결제가 정상적으로 완료되었습니다<br>
+                결제 완료 시간: <span id="paymentTime"></span>
+            </p>
+        </div>
+    </div>
+    <script>
+        // 이메일 클릭 시 복사
+        function copyToClipboard(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text);
+                alert('이메일 주소가 복사되었습니다');
+            }
+        }
+        document.getElementById('contactEmail').onclick = function() {
+            copyToClipboard('littlescienceai@gmail.com');
+        };
+        // 결제 시간 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const timeString = now.getFullYear() + '년 ' +
+                (now.getMonth() + 1) + '월 ' +
+                now.getDate() + '일 ' +
+                now.getHours().toString().padStart(2, '0') + ':' +
+                now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('paymentTime').textContent = timeString;
+            window.scrollTo(0, 0);
+            // 성공 사운드 효과
+            if (typeof Audio !== 'undefined') {
+                try {
+                    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvGIeBzqX2+9Qp+PwtmMcBziR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvGIeBzqX2+9Qp+PwtmMcBjiR1/LMeSUFJHfH8N2QQAoUXrTp66hVFApGn+DyvGIeBzqX2+9Qp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvGI');
+                    audio.volume = 0.1;
+                    audio.play().catch(() => {});
+                } catch (e) {}
+            }
+        });
+        // 성공 배지 애니메이션 6초 후 제거
+        setTimeout(() => {
+            const badge = document.querySelector('.success-badge');
+            if (badge) badge.style.animation = 'none';
+        }, 6000);
+    </script>
+</body>
+</html>
