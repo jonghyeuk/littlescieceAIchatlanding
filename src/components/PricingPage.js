@@ -163,7 +163,10 @@ const PricingPage = ({ onBackToLanding }) => {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <button className="text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-slate-100">
+              <button 
+                onClick={() => window.location.href = 'https://littlescienceaichat-landing.web.app/index.html'}
+                className="text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-slate-100"
+              >
                 홈으로
               </button>
               <a href="https://littlescienceaichat.web.app" target="_blank" rel="noopener noreferrer">
