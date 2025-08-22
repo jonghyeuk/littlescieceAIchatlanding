@@ -226,23 +226,24 @@ const App = () => {
               </div>
 
               {/* Screenshot Area */}
-              <div id="screenshot-section" className="lg:pl-8">
-                <div className="bg-slate-100 rounded-3xl p-8 shadow-2xl">
-                  <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">실제 사용 화면</h3>
-                  
-                  {/* Main Screenshot */}
-                  <div className="bg-white rounded-2xl p-4 shadow-lg">
-                    <div className="text-sm text-slate-500 mb-2">메인 화면</div>
-                    <div className="w-full h-64 bg-gradient-to-br from-blue-100 to-blue-200 border-2 border-dashed border-blue-300 rounded-lg flex items-center justify-center">
-                      <div className="text-center text-slate-600">
-                        <Beaker className="w-16 h-16 mx-auto mb-4 text-blue-500" />
-                        <p className="text-sm">스크린샷 영역</p>
-                        <p className="text-xs text-slate-500">권장 사이즈: 600×400px</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+<div id="screenshot-section" className="lg:pl-8">
+  <div className="bg-slate-100 rounded-3xl p-8 shadow-2xl">
+    <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">실제 사용 화면</h3>
+    
+    {/* Main Screenshot */}
+    <div className="bg-white rounded-2xl p-4 shadow-lg">
+      <div className="text-sm text-slate-500 mb-2">메인 화면</div>
+      <div className="w-full rounded-lg overflow-hidden">
+        <img 
+          src="/image/anigif.gif"
+          alt="과학연구설계 AI 실제 사용 화면"
+          className="w-full h-auto object-cover shadow-lg"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</div>
             </div>
           </div>
         </section>
