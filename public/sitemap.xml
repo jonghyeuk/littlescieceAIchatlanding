@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- 메인 랜딩페이지 -->
   <url>
-    <loc>https://your-domain.com/</loc>
+    <loc>https://littlescienceai.com/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10,21 +10,21 @@
   
   <!-- 고객지원 페이지들 -->
   <url>
-    <loc>https://your-domain.com/help.html</loc>
+    <loc>https://littlescienceai.com/help.html</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://your-domain.com/faq.html</loc>
+    <loc>https://littlescienceai.com/faq.html</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://your-domain.com/contact.html</loc>
+    <loc>https://littlescienceai.com/contact.html</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -32,21 +32,21 @@
   
   <!-- 정책/약관 페이지들 -->
   <url>
-    <loc>https://your-domain.com/privacy.html</loc>
+    <loc>https://littlescienceai.com/privacy.html</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://your-domain.com/terms.html</loc>
+    <loc>https://littlescienceai.com/terms.html</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://your-domain.com/parents.html</loc>
+    <loc>https://littlescienceai.com/parents.html</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
