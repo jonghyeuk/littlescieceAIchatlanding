@@ -91,7 +91,7 @@ const PricingPage = ({ onBackToLanding }) => {
       // 🔥 X-Frame-Options 때문에 iframe 대신 새창 방식 사용
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = 'https://script.google.com/macros/s/AKfycbwhEHs7TBRuhlj2dZslX_pyGVbeZQDIxRPz768Ns4yIOWPWA_L2wlcMt8wtbohgGfO3/exec';
+      form.action = 'https://script.google.com/macros/s/AKfycbzAYPbN3Kj9rh3wpucPMFe8j2RZ2k7vrSNmDBtWUofOePHusQ5WazVhXl5nFhjPe8AK/exec';
       form.target = '_blank'; // 🔥 새창에서 열기
 
       // 데이터 추가
