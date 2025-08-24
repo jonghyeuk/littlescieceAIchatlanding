@@ -163,7 +163,7 @@
         </div>
     </div>
     <script>
-        // 이메일 클릭 시 복사
+        // 이메일 클릭 시 복사 (기존 기능 유지)
         function copyToClipboard(text) {
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(text);
@@ -173,7 +173,8 @@
         document.getElementById('contactEmail').onclick = function() {
             copyToClipboard('littlescienceai@gmail.com');
         };
-        // 결제 시간 표시
+        
+        // 결제 시간 표시 (기존 기능 유지)
         document.addEventListener('DOMContentLoaded', function() {
             const now = new Date();
             const timeString = now.getFullYear() + '년 ' +
@@ -183,16 +184,48 @@
                 now.getMinutes().toString().padStart(2, '0');
             document.getElementById('paymentTime').textContent = timeString;
             window.scrollTo(0, 0);
-            // 성공 사운드 효과
+            
+            // 성공 사운드 효과 (기존 기능 유지)
             if (typeof Audio !== 'undefined') {
                 try {
-                    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvGIeBzqX2+9Qp+PwtmMcBziR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvGIeBzqX2+9Qp+PwtmMcBjiR1/LMeSUFJHfH8N2QQAoUXrTp66hVFApGn+DyvGIeBzqX2+9Qp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvGI');
+                    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvGIeBzqX2+9Qp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvGIeBzqX2+9Qp+PwtmMcBjiR1/LMeSUFJHfH8N2QQAoUXrTp66hVFApGn+DyvGIeBzqX2+9Qp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvGI');
                     audio.volume = 0.1;
                     audio.play().catch(() => {});
                 } catch (e) {}
             }
+            
+            // 🔥 이메일 발송 요청 (새로 추가된 핵심 기능)
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('mul_no') || urlParams.get('var1') || urlParams.get('var2')) {
+                console.log('결제 완료 - 이메일 발송 요청 시작');
+                
+                fetch('https://script.google.com/macros/s/AKfycbwzyGw4_yBIVvYuRNZ6EwvAU_kU55ewbnJU1nn9PLZRXQFeTGU3bmqxKWlHmJIrUJM/exec', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'send_email_complete',
+                        ...Object.fromEntries(urlParams)
+                    })
+                }).then(response => response.json())
+                  .then(result => {
+                      console.log('이메일 발송 응답:', result);
+                      if (result.success) {
+                          console.log('이메일 발송 성공');
+                      } else {
+                          console.log('이메일 발송 실패:', result.message);
+                      }
+                  })
+                  .catch(error => {
+                      console.error('이메일 발송 요청 오류:', error);
+                  });
+            } else {
+                console.log('결제 정보 없음 - 이메일 발송 건너뜀');
+            }
         });
-        // 성공 배지 애니메이션 6초 후 제거
+        
+        // 성공 배지 애니메이션 6초 후 제거 (기존 기능 유지)
         setTimeout(() => {
             const badge = document.querySelector('.success-badge');
             if (badge) badge.style.animation = 'none';
